@@ -27,7 +27,18 @@ ArcDev Ltd (arcdevltd.com) — website + office management webapp.
 - Cloudflare R2 for images and documents
 - Docker on a VPS, DNS on Cloudflare
 
+## Run the website
+
+```bash
+corepack pnpm install
+corepack pnpm --filter @arcdev/web dev
+```
+
+Open http://localhost:3000. More in [apps/web/README.md](apps/web/README.md).
+
 ## Docs
 
 - [Build plan](docs/build-plan.md) — phases, task lists, milestones, risks
-- [Design notes](docs/design.md) — palette, type, layout rules, screens to design
+- [Design notes](docs/design.md) — palette, type, responsive layout, screens to design
+- [SEO plan](docs/seo.md) — rendering, URLs, metadata, structured data, speed, launch checklist
+- [File structure](docs/file-structure.md) — every app and folder, roles, and what gets built in which phase

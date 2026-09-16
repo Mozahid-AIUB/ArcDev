@@ -1,13 +1,15 @@
 # ArcDev — Website + Webapp Build Plan
 
-Version 1 · 17 September 2026
-Estimated at 6–7 weeks for one developer working six days a week.
+Version 2 · 17 September 2026
+Estimated at 7–8 weeks for one developer working six days a week.
+
+The website ships first, on its own, with no backend. The webapp follows and takes over the website's data once it exists.
 
 ---
 
 ## 1. The customer journey
 
-This flow is what the whole system is designed around.
+This flow is what the whole system is designed around. It describes the finished system; steps 4–6 arrive with the webapp.
 
 | # | Where | What happens |
 |---|---|---|
@@ -27,10 +29,14 @@ Step 6 is why a webapp is needed. A website alone introduces the company; it can
 | Role | Access |
 |---|---|
 | Public (no login) | Home, six service pages, project gallery, flat listings, about, contact |
-| Admin | Everything — leads, projects, flats, investors, HR, BoQ, website content, users |
-| Staff | Leads follow-up, projects and flats. **No** payroll or investment figures |
-| Buyer | Only their own flat, installment schedule and payment history |
-| Investor | Only their own investment, accrued profit and return calculator |
+| Admin | Everything. Confirms buyer payments and investments, approves requisitions |
+| Staff | Leads follow-up, projects, flats and website content. **No** money figures |
+| HR | Employees and payroll only |
+| Engineer | BoQ, schedule and status on the web. Requisitions, work orders and storage list in the mobile app |
+| Buyer | Their own flat: fills the booking form, uploads payment receipts, sees installments |
+| Investor | Registers, applies to invest, sees their own confirmed investments and profit |
+
+Buyers and investors never enter an amount that counts: an admin confirms every payment and investment first. Money records are voided with a reason, never deleted. Full detail in [file structure § 7](file-structure.md#7-roles).
 
 ---
 
@@ -38,89 +44,128 @@ Step 6 is why a webapp is needed. A website alone introduces the company; it can
 
 ### Phase 0 — Before any code (2–3 days)
 
-Blocking items. Without these the work stalls mid-way.
+Only what the website needs. Without these the work stalls mid-way.
 
 - [ ] Signed quotation and 40% advance
 - [ ] Decide whether the Exchange service stays
 - [ ] Collect logo, photos, About copy and ongoing project details
-- [ ] Installment rules: down payment %, number of months
-- [ ] Investment return rules: fixed rate or profit share
-- [ ] Payroll fields
 - [ ] Site language: Bangla, English or both
+- [ ] Office email address that should receive form submissions
 
 **Deliverable:** a written scope both sides agree on.
 
-### Phase 1 — Foundation (week 1)
+---
 
-Nothing visible this week, but skipping it means rebuilding later.
+### Website
 
-- [ ] Monorepo: `apps/web`, `apps/api`, `packages/shared`
+### Phase 1 — Public website (weeks 1–2)
+
+Something live the client can share, before any backend exists. Placeholder photos and copy are fine while the client's content is on its way.
+
+- [x] Monorepo with `apps/web` only. `apps/api` joins in Phase 2
+- [x] Types for Project and Service in `packages/shared`, in the same shape the API will return later
+- [x] Home: menu, logo, hero, six service tiles. No Login button until the webapp exists
+- [x] Six service pages, each with its own request form
+- [x] Form validation and a hidden spam trap
+- [ ] Forms email the office — code done, needs the client's SMTP details to test for real
+- [ ] Cloudflare Turnstile on the forms
+- [x] Ongoing Projects section and project detail pages, content from data files in the repo (sample projects for now)
+- [x] Contact page
+- [ ] Gallery and About — waiting on the client's photos and copy
+- [x] Floating WhatsApp and Call buttons
+- [ ] Responsive from 320px up, tested at 360, 768 and 1280px — see [design notes](design.md#4-responsive-layout)
+- [ ] SEO foundation: server rendering, metadata, sitemap, robots, structured data, share images — see [SEO plan](seo.md)
+- [ ] Google Search Console and Google Business Profile set up now, since search results take months
+- [ ] Responsive testing checklist and SEO launch checklist passed
+- [ ] Live on arcdevltd.com
+
+**Milestone 1:** website live. Second payment here.
+
+> Until the admin panel exists, project updates go through the developer. Tell the client this up front.
+
+---
+
+### Webapp
+
+### Before the webapp starts
+
+These rules shape the database. Get them in writing before Phase 2.
+
+- [ ] Installment rules: down payment %, number of months, any charges
+- [ ] Investment return rules: fixed rate or profit share, and the term
+- [ ] Payroll fields: basic, allowances, deductions
+- [ ] Who approves what, and which staff see which data
+
+### Phase 2 — Backend foundation (week 3)
+
+The website looks the same to visitors afterwards, but now runs on the database.
+
+- [ ] `apps/api` with NestJS
 - [ ] PostgreSQL + Prisma schema
 - [ ] Auth: JWT + refresh token, four roles (admin, staff, buyer, investor)
 - [ ] Cloudflare R2 for images and documents
-- [ ] Docker deploy to `staging.arcdevltd.com`
+- [ ] Move project content from repo files into the database
+- [ ] Forms save a Lead as well as sending the email
 - [ ] Daily database backup
+- [ ] API deployed with Docker, staging at `staging.arcdevltd.com`
 
-**Deliverable:** a working staging link where login works.
+**Deliverable:** the website reads from the database, and every new request is stored.
 
-### Phase 2 — Public website (week 2)
+### Phase 3 — Admin panel (week 4)
 
-- [ ] Home: menu, logo, Login, hero, six service tiles
-- [ ] Six service pages, each with its own request form
-- [ ] Form submissions create Leads, with email and notification
-- [ ] Ongoing Projects section and project detail pages
-- [ ] Gallery, About, Contact
-- [ ] Floating WhatsApp and Call buttons
-- [ ] Mobile testing, image compression, basic SEO, OG share image
-
-**Deliverable:** the client can open the whole site on their phone.
-
-### Phase 3 — Admin panel (week 3)
-
+- [ ] Login button appears on the website
 - [ ] Leads inbox with status, notes and search
 - [ ] Projects: create, edit, upload photos, set status
 - [ ] Edit gallery and service page copy
 - [ ] Create users and assign roles
 - [ ] Search, filter and pagination on every list
 - [ ] Forgot password
+- [ ] SEO fields in every editor: title, description, slug, and required image alt text
+- [ ] Saving in the admin rebuilds the matching public page
 
-**Milestone 1:** arcdevltd.com goes live. Second payment here.
+**Deliverable:** the office updates the website without the developer.
 
-### Phase 4 — Buyer and investor portals (week 4)
+### Phase 4 — Buyer and investor portals (week 5)
 
+- [ ] `buyer` and `investor` roles
 - [ ] Flat listings: project, size, price, available / booked / sold
 - [ ] Installment calculator
-- [ ] Admin "Record payment" screen
-- [ ] Buyer portal: installment schedule and payment history
+- [ ] Buyer portal: booking form, installment schedule, payment history
+- [ ] Buyers upload payment receipts; admin confirms before the amount counts
 - [ ] Investor registration, subject to admin approval
-- [ ] Investor portal: investment, profit and return calculator
+- [ ] Investment applications; admin confirms once the money arrives, and only then does profit accrue
+- [ ] Investor portal: confirmed investments, profit and return calculator
+- [ ] Payments and investments are voided with a reason, never deleted
 
 **Deliverable:** demonstrated with a test buyer and a test investor.
 
-### Phase 5 — HR and Engineering (week 5)
+### Phase 5 — HR and Engineering (week 6)
 
-- [ ] Employee list and details
-- [ ] Monthly payroll entry
-- [ ] BoQ upload per project
+- [ ] `hr` role: employee list and details
+- [ ] Monthly payroll entry, voided with a reason, never deleted
+- [ ] `engineer` role: BoQ upload per project
+- [ ] Work schedule per project
 - [ ] Status per BoQ line item
-- [ ] Verify role-based visibility
+- [ ] Verify each role sees only its own sections
 
-**Deliverable:** all six modules running.
+Requisitions, work orders and the storage list are not in this phase. They come with the mobile app.
 
-### Phase 6 — Testing and handover (week 6)
+**Deliverable:** all six roles working.
+
+### Phase 6 — Testing and handover (week 7)
 
 - [ ] Role checks on every API endpoint (an investor must not reach HR data)
-- [ ] Test on phone, tablet and desktop
+- [ ] Responsive testing checklist — see [design notes](design.md#testing-checklist)
+- [ ] SEO launch checklist again, for the pages the webapp now generates — see [SEO plan](seo.md#12-launch-checklist)
 - [ ] Practice restoring a backup
 - [ ] Client revisions and bug fixes
-- [ ] Final launch on arcdevltd.com
 - [ ] Admin training and a short guide
 
 **Milestone 2:** full handover, final payment.
 
-### Phase 7 — Buffer (week 7)
+### Phase 7 — Buffer (week 8)
 
-Quote seven weeks, aim to finish in six.
+Quote eight weeks, aim to finish in seven.
 
 ---
 
@@ -129,8 +174,8 @@ Quote seven weeks, aim to finish in six.
 | When | Against | Amount |
 |---|---|---|
 | Start | Signed scope | 40% |
-| Milestone 1 · week 3 | Website and admin live | 30% |
-| Milestone 2 · week 6 | Full handover | 30% |
+| Milestone 1 · week 2 | Website live | 30% |
+| Milestone 2 · week 7 | Webapp handover | 30% |
 
 **Excluded from the price, put it in writing:** monthly hosting, client-supplied photos and copy, revisions beyond two rounds, maintenance after the first month, and any new feature.
 
@@ -148,7 +193,8 @@ Not built now, but the database is shaped so these drop in without breaking anyt
 
 ## 6. Risks
 
-- **Late client content.** The biggest source of delay. Collect everything in Phase 0 and use placeholders to keep moving.
+- **Late client content.** The biggest source of delay. Build with placeholders and swap in real content as it arrives.
+- **Webapp rules still undecided when Phase 2 starts.** The website is already live and paid for, so this delays the webapp but puts nothing delivered at risk.
 - **Changing installment and profit rules.** Get them in writing and verify against one worked example.
-- **"Just one more small thing".** Anything outside this list goes on the Phase 2 list.
+- **"Just one more small thing".** Anything outside this list goes on the later-phases list.
 - **Building without roles.** Not optional in a system holding money.

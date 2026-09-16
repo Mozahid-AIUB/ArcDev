@@ -1,0 +1,50 @@
+@import "tailwindcss";
+
+/* Palette from docs/design.md. Placeholder until the client's logo arrives. */
+@theme {
+  --color-navy: #16274a;
+  --color-navy-deep: #0e1a33;
+  --color-gold: #a8802c;
+  --color-gold-deep: #7f611f;
+  --color-gold-bright: #d2ab55;
+  --color-ground: #f7f5f0;
+  --color-panel: #ffffff;
+  --color-ink: #101a2e;
+  --color-ink-soft: #46536b;
+  --color-line: #dfd9cd;
+  --color-ok: #2f6b4f;
+  --color-stop: #93321f;
+  --color-whatsapp: #1f9d55;
+}
+
+@theme inline {
+  --font-sans: var(--font-hind), "Noto Sans Bengali", system-ui, sans-serif;
+}
+
+@layer base {
+  body {
+    background-color: var(--color-ground);
+    color: var(--color-ink);
+  }
+
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-gold);
+    outline-offset: 2px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

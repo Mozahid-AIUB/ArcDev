@@ -1,0 +1,4 @@
+{
+  "extends": "@arcdev/config/tsconfig.base.json",
+  "include": ["src"]
+}
