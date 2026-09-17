@@ -83,6 +83,78 @@ export function BuildingIcon({ className = "size-6" }: IconProps) {
   );
 }
 
+export function ChevronDownIcon({ className = "size-4" }: IconProps) {
+  return (
+    <svg {...stroke} className={className}>
+      <path d="m6 9 6 6 6-6" />
+    </svg>
+  );
+}
+
+export function ChevronLeftIcon({ className = "size-6" }: IconProps) {
+  return (
+    <svg {...stroke} className={className}>
+      <path d="m15 6-6 6 6 6" />
+    </svg>
+  );
+}
+
+export function ChevronRightIcon({ className = "size-6" }: IconProps) {
+  return (
+    <svg {...stroke} className={className}>
+      <path d="m9 6 6 6-6 6" />
+    </svg>
+  );
+}
+
+export function PlusIcon({ className = "size-5" }: IconProps) {
+  return (
+    <svg {...stroke} className={className}>
+      <path d="M12 5v14M5 12h14" />
+    </svg>
+  );
+}
+
+export function CheckIcon({ className = "size-5" }: IconProps) {
+  return (
+    <svg {...stroke} className={className}>
+      <path d="m5 12.5 4.5 4.5L19 7.5" />
+    </svg>
+  );
+}
+
+export function ArrowUpRightIcon({ className = "size-5" }: IconProps) {
+  return (
+    <svg {...stroke} className={className}>
+      <path d="M7 17 17 7M8 7h9v9" />
+    </svg>
+  );
+}
+
+export function PauseIcon({ className = "size-4" }: IconProps) {
+  return (
+    <svg {...stroke} className={className}>
+      <path d="M9 5v14M15 5v14" />
+    </svg>
+  );
+}
+
+export function PlayIcon({ className = "size-4" }: IconProps) {
+  return (
+    <svg {...stroke} className={className}>
+      <path d="M7 5v14l12-7Z" />
+    </svg>
+  );
+}
+
+export function ExpandIcon({ className = "size-5" }: IconProps) {
+  return (
+    <svg {...stroke} className={className}>
+      <path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5" />
+    </svg>
+  );
+}
+
 export function ServiceIcon({ slug, className = "size-6" }: IconProps & { slug: ServiceSlug }) {
   switch (slug) {
     case "fund":

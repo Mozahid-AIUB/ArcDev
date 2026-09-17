@@ -15,6 +15,12 @@ export const SITE = {
   address: "Office address to be confirmed",
 } as const;
 
-export const isProductionSite = SITE.url === PRODUCTION_URL;
+/**
+ * Search engines may index the site only on the real domain, and only once
+ * NEXT_PUBLIC_ALLOW_INDEXING=true is set — after the client approves real content.
+ * Until then the live site carries sample data that must not end up in Google.
+ */
+export const isProductionSite =
+  SITE.url === PRODUCTION_URL && process.env.NEXT_PUBLIC_ALLOW_INDEXING === "true";
 
 export const whatsappUrl = `https://wa.me/${SITE.whatsappNumber}`;

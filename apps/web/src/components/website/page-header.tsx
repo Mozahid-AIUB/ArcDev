@@ -1,5 +1,7 @@
+import Image from "next/image";
 import Link from "next/link";
 import type { ReactNode } from "react";
+import { SplitWords } from "@/components/motion/split-words";
 import { breadcrumbJsonLd, type Crumb } from "@/lib/seo";
 import { JsonLd } from "./json-ld";
 
@@ -9,16 +11,33 @@ interface PageHeaderProps {
   eyebrow?: ReactNode;
   title: string;
   intro?: string;
+  /** Background photo. Without one the band is plain navy. */
+  image?: string;
+  /** Extra content under the intro: badges, key facts, buttons. */
+  children?: ReactNode;
 }
 
-/** The navy band at the top of every inner page, with a breadcrumb. */
-export function PageHeader({ crumbs, eyebrow, title, intro }: PageHeaderProps) {
+/** The navy band at the top of every inner page: breadcrumb, animated title, optional photo. */
+export function PageHeader({ crumbs, eyebrow, title, intro, image, children }: PageHeaderProps) {
   const trail = crumbs.slice(0, -1);
 
   return (
-    <section className="bg-navy text-white">
+    <section className="relative isolate overflow-hidden bg-navy text-white">
       <JsonLd data={breadcrumbJsonLd(crumbs)} />
-      <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6 sm:py-14">
+
+      {image && (
+        <>
+          <div data-parallax="8" className="absolute inset-x-0 top-[-10%] -z-20 h-[120%]">
+            <Image src={image} alt="" fill priority sizes="100vw" className="object-cover" />
+          </div>
+          <div
+            aria-hidden="true"
+            className="absolute inset-0 -z-10 bg-linear-to-r from-navy-deep via-navy-deep/85 to-navy-deep/40"
+          />
+        </>
+      )}
+
+      <div className={`mx-auto max-w-7xl px-4 sm:px-6 ${image ? "py-16 sm:py-24 lg:py-28" : "py-12 sm:py-16"}`}>
         <nav aria-label="Breadcrumb">
           <ol className="flex flex-wrap items-center gap-x-2 text-sm text-white/65">
             {trail.map((crumb) => (
@@ -35,11 +54,26 @@ export function PageHeader({ crumbs, eyebrow, title, intro }: PageHeaderProps) {
           </ol>
         </nav>
 
-        {eyebrow && <div className="mt-6">{eyebrow}</div>}
-        <h1 className={`${eyebrow ? "mt-3" : "mt-6"} max-w-3xl text-3xl font-bold leading-tight sm:text-4xl`}>
-          {title}
+        {eyebrow && (
+          <div data-reveal="" className="mt-8">
+            {eyebrow}
+          </div>
+        )}
+        <h1
+          className={`${eyebrow ? "mt-4" : "mt-8"} max-w-4xl text-4xl font-bold leading-[1.05] sm:text-5xl lg:text-6xl`}
+        >
+          <SplitWords text={title} />
         </h1>
-        {intro && <p className="mt-3 max-w-2xl text-lg text-white/80">{intro}</p>}
+        {intro && (
+          <p data-reveal="" className="mt-5 max-w-2xl text-lg leading-relaxed text-white/80 sm:text-xl">
+            {intro}
+          </p>
+        )}
+        {children && (
+          <div data-reveal="" className="mt-8">
+            {children}
+          </div>
+        )}
       </div>
     </section>
   );

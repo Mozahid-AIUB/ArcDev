@@ -8,6 +8,7 @@
   --color-gold-deep: #7f611f;
   --color-gold-bright: #d2ab55;
   --color-ground: #f7f5f0;
+  --color-sand: #ece6da;
   --color-panel: #ffffff;
   --color-ink: #101a2e;
   --color-ink-soft: #46536b;
@@ -19,6 +20,7 @@
 
 @theme inline {
   --font-sans: var(--font-hind), "Noto Sans Bengali", system-ui, sans-serif;
+  --font-display: var(--font-archivo), var(--font-hind), system-ui, sans-serif;
 }
 
 @layer base {
@@ -33,10 +35,142 @@
     text-wrap: balance;
   }
 
+  /* Wide display face for the big headings. */
+  h1,
+  h2,
+  .font-display {
+    font-family: var(--font-display);
+    font-stretch: 112%;
+    letter-spacing: -0.015em;
+  }
+
   :focus-visible {
     outline: 2px solid var(--color-gold);
     outline-offset: 2px;
   }
+
+  summary::-webkit-details-marker {
+    display: none;
+  }
+}
+
+/* ------------------------------------------------------------------------------------------
+   Scroll animations (components/motion/motion-root.tsx).
+   The head script in app/layout.tsx sets html[data-motion] only when the visitor allows
+   motion, and removes it again if the animation code hasn't started within 5 seconds.
+   So without JavaScript, or with reduced motion, every element below is simply visible.
+   ------------------------------------------------------------------------------------------ */
+
+html[data-motion] [data-reveal] {
+  opacity: 0;
+  transform: translateY(32px);
+}
+html[data-motion] [data-reveal="fade"] {
+  transform: none;
+}
+html[data-motion] [data-reveal="left"] {
+  transform: translateX(-40px);
+}
+html[data-motion] [data-reveal="right"] {
+  transform: translateX(40px);
+}
+html[data-motion] [data-reveal="scale"] {
+  transform: scale(0.94);
+}
+html[data-motion] [data-word] {
+  transform: translateY(110%);
+}
+html[data-motion] [data-progress] {
+  transform: scaleX(0);
+}
+html[data-motion] [data-line="x"] {
+  transform: scaleX(0);
+}
+html[data-motion] [data-line="y"] {
+  transform: scaleY(0);
+}
+
+[data-progress],
+[data-line="x"] {
+  transform-origin: left center;
+}
+[data-line="y"] {
+  transform-origin: center top;
+}
+
+.word-mask {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: top;
+  padding-bottom: 0.12em;
+  margin-bottom: -0.12em;
+}
+.word-mask > [data-word] {
+  display: inline-block;
+}
+
+/* Endless scrolling band. The track holds the list twice and slides by half its width. */
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+.marquee-track {
+  animation: marquee var(--marquee-duration, 40s) linear infinite;
+}
+.marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+/* Dashes that travel along a connector, like goods moving down a line. */
+@keyframes flow-x {
+  to {
+    background-position: 24px 0;
+  }
+}
+@keyframes flow-y {
+  to {
+    background-position: 0 24px;
+  }
+}
+.flow-x {
+  background-image: repeating-linear-gradient(90deg, var(--color-gold) 0 10px, transparent 10px 24px);
+  animation: flow-x 0.9s linear infinite;
+}
+.flow-x-reverse {
+  background-image: repeating-linear-gradient(90deg, var(--color-gold-bright) 0 10px, transparent 10px 24px);
+  animation: flow-x 0.9s linear infinite reverse;
+}
+.flow-y {
+  background-image: repeating-linear-gradient(180deg, var(--color-gold) 0 10px, transparent 10px 24px);
+  animation: flow-y 0.9s linear infinite;
+}
+
+/* Slow zoom on the active hero photo. */
+@keyframes ken-burns {
+  from {
+    transform: scale(1.12);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+.ken-burns {
+  animation: ken-burns 9s ease-out forwards;
+}
+
+/* Fills a bar over --fill-duration; used by the hero slide tabs. */
+@keyframes fill-x {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+.fill-x {
+  transform-origin: left center;
+  animation: fill-x var(--fill-duration, 6s) linear forwards;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -44,7 +178,15 @@
   *::before,
   *::after {
     animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
+  }
+  .marquee-track,
+  .flow-x,
+  .flow-x-reverse,
+  .flow-y,
+  .ken-burns {
+    animation: none !important;
   }
 }

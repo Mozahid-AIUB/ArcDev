@@ -35,7 +35,7 @@ Status colours are separate from the accent and used only in the admin panel: `#
 
 ## 3. Type
 
-- **Headings** — a serif or a strong geometric sans, set tight. Chosen once the logo lands so the two agree.
+- **Headings** — Archivo at a wide setting (`font-stretch: 112%`), bold and tight. It gives h1/h2 an architectural, confident feel. Revisit once the logo lands so the two agree.
 - **Body** — Hind Siliguri, which covers both Bangla and English at the same weight. Important if the site becomes bilingual.
 - **Numbers** — tabular figures everywhere money appears: installment tables, payroll, investment returns. Columns of digits must line up.
 

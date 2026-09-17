@@ -19,7 +19,7 @@ How the live site is hosted, how a change reaches it, and where to look when som
 | Source | GitHub `Mozahid-AIUB/ArcDev`, branch `main`, via the `mozahid-a-i-u-b` GitHub App |
 | Build | Dockerfile at `infra/docker/web.Dockerfile`, build context is the repo root |
 | Port | Container listens on 3000; only Coolify's proxy can reach it |
-| HTTPS | Let's Encrypt, issued and renewed by Coolify's proxy |
+| HTTPS | Cloudflare certificate for visitors. Cloudflare → server uses the proxy's self-signed certificate (SSL mode **Full**) |
 
 Later phases add `arcdev-api` and a PostgreSQL database **inside the same ArcDev project**, so everything for this client stays in one place.
 
@@ -27,12 +27,20 @@ Later phases add `arcdev-api` and a PostgreSQL database **inside the same ArcDev
 
 | Type | Name | Content | Proxy |
 |---|---|---|---|
-| `A` | `@` | `194.233.85.160` | DNS only |
-| `CNAME` | `www` | `arcdevltd.com` | DNS only |
+| `A` | `@` | `194.233.85.160` | Proxied |
+| `CNAME` | `www` | `arcdevltd.com` | Proxied |
 
-Keep the proxy **off** (grey cloud). With it on, Coolify cannot obtain the HTTPS certificate.
+Traffic goes through Cloudflare (served from its Dhaka edge), which is fast for visitors in Bangladesh.
 
 `www.arcdevltd.com` and plain `http://` both redirect to `https://arcdevltd.com`.
+
+**Before the webapp launches (logins, payments):** switch SSL/TLS to **Full (strict)**. Today Cloudflare encrypts the connection to the server but does not verify its certificate. To fix it:
+
+1. Cloudflare → SSL/TLS → Origin Server → **Create Certificate** for `arcdevltd.com` and `*.arcdevltd.com`.
+2. Install that certificate for the ArcDev domains in Coolify's proxy.
+3. Set SSL/TLS mode to **Full (strict)** and confirm the site still loads.
+
+Also consider a Cloudflare **Redirect Rule** for `www` → `arcdevltd.com` with status 301. Today the proxy uses 302, which search engines treat as temporary.
 
 ## 3. How a change goes live
 
@@ -51,6 +59,7 @@ Set in Coolify → arcdev-website → **Environment Variables**. Redeploy after 
 | Variable | Needed | Notes |
 |---|---|---|
 | `NEXT_PUBLIC_SITE_URL` | No | Defaults to `https://arcdevltd.com`. Mark as a **build** variable if set: it is baked in at build time |
+| `NEXT_PUBLIC_ALLOW_INDEXING` | **Only at launch** | Leave unset while the site shows sample content, so it stays out of Google. Set to `true` (as a **build** variable) once the client has approved real content, then redeploy |
 | `REQUEST_EMAIL_TO` | **Yes, before launch** | Office inbox that receives website requests |
 | `REQUEST_EMAIL_FROM` | Yes | Sender address, usually the same mailbox as `SMTP_USER` |
 | `SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`, `SMTP_PASS` | **Yes, before launch** | Without these the live site refuses form requests and asks the visitor to call instead |
