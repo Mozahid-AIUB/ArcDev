@@ -42,3 +42,4 @@ Open http://localhost:3000. More in [apps/web/README.md](apps/web/README.md).
 - [Design notes](docs/design.md) — palette, type, responsive layout, screens to design
 - [SEO plan](docs/seo.md) — rendering, URLs, metadata, structured data, speed, launch checklist
 - [File structure](docs/file-structure.md) — every app and folder, roles, and what gets built in which phase
+- [Deployment](docs/deploy.md) — Coolify on the VPS, DNS, auto-deploy, environment variables, troubleshooting
