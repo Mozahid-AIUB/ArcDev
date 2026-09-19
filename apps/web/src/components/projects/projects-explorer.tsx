@@ -84,28 +84,34 @@ export function ProjectsExplorer({ projects }: { projects: Project[] }) {
 
   return (
     <div>
-      <div className="flex flex-col gap-4 border-b border-line pb-6 lg:flex-row lg:items-center lg:justify-between">
-        <div role="group" aria-label="Filter by status" className="flex flex-wrap gap-2">
-          {STATUS_OPTIONS.map((option) => (
-            <FilterButton
-              key={option.value}
-              active={status === option.value}
-              label={option.label}
-              count={statusCount(option.value)}
-              onClick={() => update({ status: option.value })}
-            />
-          ))}
+      <div className="flex flex-col gap-5 border-b border-line pb-6 lg:flex-row lg:items-start lg:justify-between lg:gap-8">
+        <div>
+          <p className="mb-2 text-xs font-semibold uppercase tracking-[0.14em] text-ink-soft">Status</p>
+          <div role="group" aria-label="Filter by status" className="flex flex-wrap gap-2">
+            {STATUS_OPTIONS.map((option) => (
+              <FilterButton
+                key={option.value}
+                active={status === option.value}
+                label={option.label}
+                count={statusCount(option.value)}
+                onClick={() => update({ status: option.value })}
+              />
+            ))}
+          </div>
         </div>
-        <div role="group" aria-label="Filter by type" className="flex flex-wrap gap-2">
-          {KIND_OPTIONS.map((option) => (
-            <FilterButton
-              key={option.value}
-              active={kind === option.value}
-              label={option.label}
-              count={kindCount(option.value)}
-              onClick={() => update({ kind: option.value })}
-            />
-          ))}
+        <div>
+          <p className="mb-2 text-xs font-semibold uppercase tracking-[0.14em] text-ink-soft">Type</p>
+          <div role="group" aria-label="Filter by type" className="flex flex-wrap gap-2">
+            {KIND_OPTIONS.map((option) => (
+              <FilterButton
+                key={option.value}
+                active={kind === option.value}
+                label={option.label}
+                count={kindCount(option.value)}
+                onClick={() => update({ kind: option.value })}
+              />
+            ))}
+          </div>
         </div>
       </div>
 
