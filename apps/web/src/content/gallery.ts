@@ -1,4 +1,4 @@
-// SAMPLE photos (CC0 stock, see public/images/sample/CREDITS.md). None show ArcDev's work.
+// Real ArcDev project photography, drawn from the company portfolio.
 
 export const GALLERY_CATEGORIES = ["Construction", "Buildings", "Interiors", "Planning"] as const;
 export type GalleryCategory = (typeof GALLERY_CATEGORIES)[number];
@@ -12,22 +12,29 @@ export interface GalleryPhoto {
 }
 
 export const GALLERY: GalleryPhoto[] = [
-  { src: "/images/sample/site-tower-crane.webp", alt: "Tower crane lifting material to an upper floor", category: "Construction", width: 1400, height: 1859 },
-  { src: "/images/sample/residential-tower.webp", alt: "Residential tower among trees", category: "Buildings", width: 1400, height: 1867 },
-  { src: "/images/sample/interior-kitchen.webp", alt: "Fitted kitchen with an island", category: "Interiors", width: 1024, height: 683 },
-  { src: "/images/sample/site-piling.webp", alt: "Piling rig on a construction site", category: "Construction", width: 1400, height: 1050 },
-  { src: "/images/sample/engineering-drawings.webp", alt: "Set square on architectural drawings", category: "Planning", width: 1024, height: 683 },
-  { src: "/images/sample/city-night-towers.webp", alt: "High-rise buildings at night", category: "Buildings", width: 1600, height: 1066 },
-  { src: "/images/sample/interior-living.webp", alt: "Living room with sofas and a coffee table", category: "Interiors", width: 1280, height: 1066 },
-  { src: "/images/sample/site-concrete.webp", alt: "Worker pouring concrete", category: "Construction", width: 683, height: 1024 },
-  { src: "/images/sample/tower-blue.webp", alt: "Tall building with lit windows at dusk", category: "Buildings", width: 1152, height: 2048 },
-  { src: "/images/sample/interior-bedroom.webp", alt: "Bedroom with a large window", category: "Interiors", width: 1400, height: 1047 },
-  { src: "/images/sample/site-crane.webp", alt: "Building site with a tower crane", category: "Construction", width: 1400, height: 1050 },
-  { src: "/images/sample/engineering-blueprint.webp", alt: "Ruler on a blueprint", category: "Planning", width: 1024, height: 683 },
-  { src: "/images/sample/glass-towers.webp", alt: "Glass office towers", category: "Buildings", width: 1024, height: 683 },
-  { src: "/images/sample/interior-open-plan.webp", alt: "Open-plan kitchen with a staircase", category: "Interiors", width: 1024, height: 684 },
-  { src: "/images/sample/site-frame.webp", alt: "Concrete frame of a building under construction", category: "Construction", width: 1400, height: 1050 },
-  { src: "/images/sample/land-planning.webp", alt: "Man reading plans on a plot of land", category: "Planning", width: 1024, height: 681 },
-  { src: "/images/sample/interior-dining.webp", alt: "Bright dining area", category: "Interiors", width: 1024, height: 684 },
-  { src: "/images/sample/site-workers.webp", alt: "Workers operating a concrete mixer", category: "Construction", width: 683, height: 1024 },
+  { src: "/images/projects/imperial-commercial-center/exterior-01.webp", alt: "Imperial Commercial Center, Satmasjid Road", category: "Buildings", width: 1400, height: 1867 },
+  { src: "/images/projects/joynal-garden/exterior-01.webp", alt: "Joynal Garden, Elephant Road", category: "Buildings", width: 1400, height: 1050 },
+  { src: "/images/projects/runner-apartment-complex/exterior-riverside-01.webp", alt: "Runner Apartment Complex, riverside exterior", category: "Buildings", width: 1400, height: 1050 },
+  { src: "/images/projects/swadesh-sunvalley/exterior-night-01.webp", alt: "Swadesh Sunvalley residential tower at night", category: "Buildings", width: 1200, height: 1600 },
+  { src: "/images/projects/hai-residence-noakhali/exterior-facade-01.webp", alt: "Hai Residence, Noakhali, exterior", category: "Buildings", width: 1400, height: 1050 },
+  { src: "/images/projects/anlima-purbachal/exterior-day-01.webp", alt: "Anlima Vacation House at Purbachal", category: "Buildings", width: 1400, height: 1050 },
+
+  { src: "/images/projects/appropriate-apparels/construction-01.webp", alt: "Appropriate Apparels factory under construction", category: "Construction", width: 1400, height: 1050 },
+  { src: "/images/projects/sadma-fashion-dyeing/construction-01.webp", alt: "Sadma Fashion Dyeing plant under construction", category: "Construction", width: 1400, height: 1050 },
+  { src: "/images/projects/habitus-fashion/exterior-02.webp", alt: "Habitus Fashion Ltd factory grounds", category: "Construction", width: 1400, height: 1050 },
+
+  { src: "/images/projects/royal-group-guest-house/living-room-01.webp", alt: "Royal Group Guest House living room", category: "Interiors", width: 1280, height: 1066 },
+  { src: "/images/projects/dept-of-management-du/boardroom-01.webp", alt: "Department of Management boardroom, University of Dhaka", category: "Interiors", width: 1400, height: 1050 },
+  { src: "/images/projects/cafe-red-beret/exterior-riverside-01.webp", alt: "Cafe Red Beret riverside seating", category: "Interiors", width: 1400, height: 1050 },
+  { src: "/images/projects/best-in-brands/showroom-wide-01.webp", alt: "Best In Brands showroom interior", category: "Interiors", width: 1400, height: 1050 },
+  { src: "/images/projects/hai-residence-noakhali/living-room-double-height-01.webp", alt: "Hai Residence double-height living room", category: "Interiors", width: 1400, height: 1050 },
+  { src: "/images/projects/hai-residence-noakhali/bathroom-tub-01.webp", alt: "Hai Residence bathroom", category: "Interiors", width: 1400, height: 1050 },
+  { src: "/images/projects/royal-group-head-office/reception-01.webp", alt: "Royal Group Head Office reception", category: "Interiors", width: 1400, height: 1050 },
+  { src: "/images/projects/newtex-group/reception-01.webp", alt: "Newtex Group reception", category: "Interiors", width: 1400, height: 1050 },
+  { src: "/images/projects/oredh-studio/lounge-01.webp", alt: "OREDH lounge terrace", category: "Interiors", width: 1400, height: 1050 },
+
+  { src: "/images/projects/desco-chq-nikunjo/render-terrace-01.webp", alt: "Desco CHQ competition design render", category: "Planning", width: 1400, height: 1050 },
+  { src: "/images/projects/imperial-commercial-center/facade-detail-01.webp", alt: "Imperial Commercial Center facade detail", category: "Planning", width: 1400, height: 1050 },
+  { src: "/images/projects/appropriate-apparels/render-01.webp", alt: "Appropriate Apparels factory design render", category: "Planning", width: 1400, height: 1050 },
+  { src: "/images/projects/anlima-purbachal/pool-render-01.webp", alt: "Anlima Vacation House pool terrace render", category: "Planning", width: 1400, height: 1050 },
 ];

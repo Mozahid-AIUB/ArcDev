@@ -9,7 +9,7 @@ import { PageHeader } from "@/components/website/page-header";
 export const metadata: Metadata = {
   title: "Gallery",
   description:
-    "Photos of construction sites, finished buildings, interiors and planning work from ArcDev Ltd, a real estate developer in Dhaka.",
+    "Photos of construction sites, finished buildings, interiors and planning work from Arc Development Pvt. Ltd. in Dhaka.",
   alternates: { canonical: "/gallery" },
 };
 
@@ -23,7 +23,7 @@ export default function GalleryPage() {
         ]}
         title="Sites, buildings and interiors"
         intro="From piling rigs and concrete frames to finished towers and fitted-out flats: a look at the work behind every building."
-        image="/images/sample/site-crane.webp"
+        image="/images/projects/appropriate-apparels/construction-01.webp"
       />
 
       <section aria-labelledby="gallery-heading" className="bg-ground py-20 sm:py-28">

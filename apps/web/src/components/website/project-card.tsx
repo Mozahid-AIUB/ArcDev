@@ -9,6 +9,14 @@ const STATUS_LABEL: Record<ProjectStatus, string> = {
   completed: "Completed",
 };
 
+const KIND_LABEL: Record<Project["kind"], string> = {
+  residential: "Residential",
+  commercial: "Commercial",
+  industrial: "Industrial",
+  "hotel-resort": "Hotel & Resort",
+  interior: "Interior",
+};
+
 const STATUS_STYLE: Record<ProjectStatus, string> = {
   ongoing: "bg-gold-bright text-navy",
   upcoming: "bg-white text-navy",
@@ -96,7 +104,8 @@ export function ProgressBar({
 export function projectKeyFacts(project: Project): string[] {
   const facts: string[] = [];
   if (project.storeys !== undefined) facts.push(`${project.storeys} storeys`);
-  if (project.units !== undefined) facts.push(`${project.units} ${project.kind === "commercial" ? "floors" : "units"}`);
+  if (project.units !== undefined)
+    facts.push(`${project.units} ${project.kind === "commercial" || project.kind === "industrial" ? "floors" : "units"}`);
   if (project.landKatha !== undefined) facts.push(`${project.landKatha} katha`);
   return facts;
 }
@@ -121,9 +130,7 @@ export function ProjectCard({ project, priority = false }: { project: Project; p
         </span>
       </div>
       <div className="flex flex-1 flex-col p-5">
-        <p className="text-xs font-semibold uppercase tracking-[0.14em] text-gold-deep">
-          {project.kind === "commercial" ? "Commercial" : "Residential"}
-        </p>
+        <p className="text-xs font-semibold uppercase tracking-[0.14em] text-gold-deep">{KIND_LABEL[project.kind]}</p>
         <h3 className="mt-1 font-display text-xl font-bold text-navy">{project.name}</h3>
         <p className="mt-1 flex items-center gap-1.5 text-[15px] text-ink-soft">
           <PinIcon className="size-4 shrink-0" />

@@ -37,7 +37,7 @@ export default function ContactPage() {
         ]}
         title="Talk to ArcDev"
         intro="Call or message us, or send a request for the service you need and we'll get back to you."
-        image="/images/sample/city-night.webp"
+        image="/images/projects/hai-residence-noakhali/exterior-facade-01.webp"
       />
 
       {/* Channels */}
@@ -54,7 +54,7 @@ export default function ContactPage() {
             <ChannelCard icon={<MailIcon className="size-6" />} label="Email" href={`mailto:${SITE.email}`}>
               {SITE.email}
             </ChannelCard>
-            <ChannelCard icon={<PinIcon className="size-6" />} label="Office">
+            <ChannelCard icon={<PinIcon className="size-6" />} label="Dhaka office">
               {SITE.address}
             </ChannelCard>
           </ul>
@@ -99,26 +99,22 @@ export default function ContactPage() {
             className="self-start border-t-4 border-gold bg-panel p-6 shadow-sm ring-1 ring-line sm:p-8"
           >
             <h2 id="office-heading" className="font-display text-2xl font-bold text-navy">
-              Our office
+              Our offices
             </h2>
             <dl className="mt-5 divide-y divide-line">
               <div className="py-3">
-                <dt className="text-sm text-ink-soft">Address</dt>
+                <dt className="text-sm text-ink-soft">Dhaka</dt>
                 <dd className="mt-1 font-semibold text-ink">{SITE.address}</dd>
+              </div>
+              <div className="py-3">
+                <dt className="text-sm text-ink-soft">Sylhet</dt>
+                <dd className="mt-1 font-semibold text-ink">{SITE.addressSylhet}</dd>
               </div>
               <div className="py-3">
                 <dt className="text-sm text-ink-soft">Office hours</dt>
                 <dd className="mt-1 font-semibold text-ink">{OFFICE_HOURS}</dd>
               </div>
             </dl>
-            <div className="mt-5 grid aspect-4/3 place-items-center bg-sand p-6 text-center">
-              <div className="flex flex-col items-center gap-3">
-                <span className="grid size-12 place-items-center rounded-full bg-navy text-gold-bright">
-                  <PinIcon className="size-6" />
-                </span>
-                <p className="max-w-xs text-ink-soft">The map will appear once the office address is confirmed</p>
-              </div>
-            </div>
           </aside>
         </div>
       </section>

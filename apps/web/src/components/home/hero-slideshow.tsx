@@ -8,20 +8,20 @@ const SLIDE_SECONDS = 6;
 
 const SLIDES = [
   {
-    image: "/images/sample/hero-city.webp",
-    alt: "Dhaka city avenue lined with buildings",
+    image: "/images/projects/imperial-commercial-center/exterior-01.webp",
+    alt: "Imperial Commercial Center, a 13-storey tower on Satmasjid Road",
     label: "Landowners",
     line: "Construction funding and joint development on land you already own.",
   },
   {
-    image: "/images/sample/hero-construction.webp",
-    alt: "Construction sites with tower cranes",
+    image: "/images/projects/habitus-fashion/exterior-01.webp",
+    alt: "Habitus Fashion Ltd factory under a clear sky in Gazipur",
     label: "Construction",
     line: "Engineering design and site management from foundation to finishing.",
   },
   {
-    image: "/images/sample/hero-residential.webp",
-    alt: "Residential apartment buildings",
+    image: "/images/projects/hai-residence-noakhali/exterior-facade-01.webp",
+    alt: "Hai Residence, a triplex family home in Noakhali",
     label: "Homes and investment",
     line: "Finished flats for families, and managed returns for investors.",
   },

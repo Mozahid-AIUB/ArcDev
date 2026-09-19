@@ -13,7 +13,7 @@ export interface Project {
   /** Area and city, e.g. "Mirpur, Dhaka". */
   location: string;
   status: ProjectStatus;
-  kind: "residential" | "commercial";
+  kind: "residential" | "commercial" | "industrial" | "hotel-resort" | "interior";
   /** One or two sentences for cards and search results. */
   summary: string;
   description: string;

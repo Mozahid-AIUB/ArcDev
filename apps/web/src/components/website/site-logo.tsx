@@ -1,18 +1,20 @@
-// Placeholder mark from the client's sketch (a triangle). Swap for the real logo when it arrives.
+import Image from "next/image";
+
 export function SiteLogo({ className = "" }: { className?: string }) {
   return (
-    <span className={`inline-flex items-center gap-2 ${className}`}>
-      <svg viewBox="0 0 24 24" className="size-7" aria-hidden="true">
-        <path
-          d="M12 3 22 20H2Z"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="1.75"
-          strokeLinejoin="round"
-        />
-        <path d="M12 11l4 6.5H8Z" className="fill-gold-bright" />
-      </svg>
-      <span className="text-xl font-bold tracking-tight">ArcDev</span>
+    <span className={`inline-flex items-center gap-2.5 ${className}`}>
+      <Image
+        src="/images/brand/logo-mark.png"
+        alt=""
+        width={44}
+        height={44}
+        className="size-9 shrink-0 sm:size-10"
+        priority
+      />
+      <span className="flex flex-col leading-tight">
+        <span className="text-lg font-bold tracking-tight sm:text-xl">Arc Development</span>
+        <span className="text-[11px] font-medium uppercase tracking-[0.14em] text-gold-bright">Pvt. Ltd.</span>
+      </span>
     </span>
   );
 }

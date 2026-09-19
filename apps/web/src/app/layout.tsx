@@ -25,8 +25,8 @@ const MOTION_SCRIPT = `(function(){try{if(window.matchMedia("(prefers-reduced-mo
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),
   title: {
-    default: `${SITE.name} — Real Estate Developer`,
-    template: `%s | ${SITE.name}`,
+    default: `${SITE.name} — Architects, Engineers & Construction Management`,
+    template: `%s | ${SITE.shortName}`,
   },
   description: SITE.description,
   openGraph: {

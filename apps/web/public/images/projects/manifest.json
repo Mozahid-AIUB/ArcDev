@@ -1,0 +1,178 @@
+{
+  "joynal-garden": [
+    "/images/projects/joynal-garden/exterior-01.webp",
+    "/images/projects/joynal-garden/entrance-01.webp",
+    "/images/projects/joynal-garden/exterior-02.webp",
+    "/images/projects/joynal-garden/rooftop-01.webp"
+  ],
+  "imperial-commercial-center": [
+    "/images/projects/imperial-commercial-center/exterior-01.webp",
+    "/images/projects/imperial-commercial-center/exterior-02.webp",
+    "/images/projects/imperial-commercial-center/street-view-01.webp",
+    "/images/projects/imperial-commercial-center/facade-detail-01.webp",
+    "/images/projects/imperial-commercial-center/aerial-01.webp"
+  ],
+  "runner-apartment-complex": [
+    "/images/projects/runner-apartment-complex/exterior-riverside-01.webp",
+    "/images/projects/runner-apartment-complex/aerial-01.webp",
+    "/images/projects/runner-apartment-complex/exterior-01.webp",
+    "/images/projects/runner-apartment-complex/exterior-02.webp",
+    "/images/projects/runner-apartment-complex/exterior-03.webp",
+    "/images/projects/runner-apartment-complex/walkway-01.webp",
+    "/images/projects/runner-apartment-complex/rooftop-terrace-01.webp",
+    "/images/projects/runner-apartment-complex/interior-living-01.webp"
+  ],
+  "swadesh-sunvalley": [
+    "/images/projects/swadesh-sunvalley/exterior-night-01.webp"
+  ],
+  "habitus-fashion": [
+    "/images/projects/habitus-fashion/exterior-01.webp",
+    "/images/projects/habitus-fashion/exterior-lawn-01.webp",
+    "/images/projects/habitus-fashion/exterior-02.webp",
+    "/images/projects/habitus-fashion/walkway-01.webp",
+    "/images/projects/habitus-fashion/garden-view-01.webp",
+    "/images/projects/habitus-fashion/walkway-02.webp",
+    "/images/projects/habitus-fashion/interior-lobby-01.webp",
+    "/images/projects/habitus-fashion/water-reflection-01.webp"
+  ],
+  "appropriate-apparels": [
+    "/images/projects/appropriate-apparels/construction-01.webp",
+    "/images/projects/appropriate-apparels/render-01.webp",
+    "/images/projects/appropriate-apparels/render-02.webp",
+    "/images/projects/appropriate-apparels/render-03.webp"
+  ],
+  "sadma-fashion-dyeing": [
+    "/images/projects/sadma-fashion-dyeing/construction-01.webp",
+    "/images/projects/sadma-fashion-dyeing/construction-02.webp",
+    "/images/projects/sadma-fashion-dyeing/construction-03.webp"
+  ],
+  "desco-chq-nikunjo": [
+    "/images/projects/desco-chq-nikunjo/render-terrace-01.webp",
+    "/images/projects/desco-chq-nikunjo/render-aerial-01.webp",
+    "/images/projects/desco-chq-nikunjo/render-night-01.webp"
+  ],
+  "bhalogari": [
+    "/images/projects/bhalogari/showroom-lobby-01.webp",
+    "/images/projects/bhalogari/showroom-floor-01.webp",
+    "/images/projects/bhalogari/signage-01.webp",
+    "/images/projects/bhalogari/ceiling-detail-01.webp",
+    "/images/projects/bhalogari/showroom-columns-01.webp"
+  ],
+  "royal-group-head-office": [
+    "/images/projects/royal-group-head-office/executive-office-01.webp",
+    "/images/projects/royal-group-head-office/reception-01.webp",
+    "/images/projects/royal-group-head-office/workstations-01.webp",
+    "/images/projects/royal-group-head-office/lounge-01.webp",
+    "/images/projects/royal-group-head-office/boardroom-01.webp",
+    "/images/projects/royal-group-head-office/meeting-room-01.webp"
+  ],
+  "dept-of-management-du": [
+    "/images/projects/dept-of-management-du/nameplate-01.webp",
+    "/images/projects/dept-of-management-du/exterior-facade-01.webp",
+    "/images/projects/dept-of-management-du/entrance-hallway-01.webp",
+    "/images/projects/dept-of-management-du/boardroom-01.webp",
+    "/images/projects/dept-of-management-du/corridor-01.webp",
+    "/images/projects/dept-of-management-du/meeting-room-01.webp",
+    "/images/projects/dept-of-management-du/office-desk-01.webp"
+  ],
+  "oredh-studio": [
+    "/images/projects/oredh-studio/studio-interior-01.webp",
+    "/images/projects/oredh-studio/lounge-01.webp",
+    "/images/projects/oredh-studio/studio-interior-02.webp",
+    "/images/projects/oredh-studio/studio-interior-03.webp",
+    "/images/projects/oredh-studio/entrance-signage-01.webp",
+    "/images/projects/oredh-studio/decor-detail-01.webp"
+  ],
+  "newtex-group": [
+    "/images/projects/newtex-group/meeting-room-showcase-01.webp",
+    "/images/projects/newtex-group/lounge-01.webp",
+    "/images/projects/newtex-group/reception-01.webp",
+    "/images/projects/newtex-group/corridor-01.webp",
+    "/images/projects/newtex-group/office-nook-01.webp"
+  ],
+  "babui-properties": [
+    "/images/projects/babui-properties/reception-01.webp",
+    "/images/projects/babui-properties/corridor-01.webp",
+    "/images/projects/babui-properties/office-01.webp",
+    "/images/projects/babui-properties/workspace-01.webp",
+    "/images/projects/babui-properties/detail-01.webp"
+  ],
+  "royal-group-branch-office": [
+    "/images/projects/royal-group-branch-office/interior-01.webp",
+    "/images/projects/royal-group-branch-office/interior-02.webp",
+    "/images/projects/royal-group-branch-office/interior-03.webp"
+  ],
+  "doors-showroom": [
+    "/images/projects/doors-showroom/signage-01.webp"
+  ],
+  "best-in-brands": [
+    "/images/projects/best-in-brands/showroom-wide-01.webp",
+    "/images/projects/best-in-brands/display-tower-01.webp",
+    "/images/projects/best-in-brands/sundora-counter-01.webp",
+    "/images/projects/best-in-brands/sundora-counter-02.webp",
+    "/images/projects/best-in-brands/penhaligons-display-01.webp",
+    "/images/projects/best-in-brands/perfume-shelf-01.webp"
+  ],
+  "dark-burg": [
+    "/images/projects/dark-burg/outlet-02-signage-01.webp",
+    "/images/projects/dark-burg/outlet-01-counter-01.webp",
+    "/images/projects/dark-burg/outlet-01-interior-01.webp",
+    "/images/projects/dark-burg/outlet-02-decor-01.webp",
+    "/images/projects/dark-burg/outlet-02-mural-01.webp"
+  ],
+  "royal-group-guest-house": [
+    "/images/projects/royal-group-guest-house/kitchen-bar-01.webp",
+    "/images/projects/royal-group-guest-house/bedroom-01.webp",
+    "/images/projects/royal-group-guest-house/living-room-01.webp",
+    "/images/projects/royal-group-guest-house/kitchen-01.webp",
+    "/images/projects/royal-group-guest-house/sitting-area-01.webp",
+    "/images/projects/royal-group-guest-house/sitting-corner-01.webp"
+  ],
+  "office-interior": [
+    "/images/projects/office-interior/workspace-01.webp",
+    "/images/projects/office-interior/reception-lounge-01.webp"
+  ],
+  "easy-buy-showroom": [
+    "/images/projects/easy-buy-showroom/showroom-counter-01.webp",
+    "/images/projects/easy-buy-showroom/display-shelves-01.webp",
+    "/images/projects/easy-buy-showroom/product-display-01.webp"
+  ],
+  "bongobondhu-corner": [
+    "/images/projects/bongobondhu-corner/installation-01.webp",
+    "/images/projects/bongobondhu-corner/sitting-corner-01.webp",
+    "/images/projects/bongobondhu-corner/portrait-detail-01.webp",
+    "/images/projects/bongobondhu-corner/table-engraving-01.webp"
+  ],
+  "cafe-red-beret": [
+    "/images/projects/cafe-red-beret/exterior-riverside-01.webp",
+    "/images/projects/cafe-red-beret/exterior-riverside-02.webp",
+    "/images/projects/cafe-red-beret/walkway-01.webp",
+    "/images/projects/cafe-red-beret/render-exterior-01.webp",
+    "/images/projects/cafe-red-beret/render-terrace-01.webp",
+    "/images/projects/cafe-red-beret/render-interior-01.webp",
+    "/images/projects/cafe-red-beret/render-exterior-02.webp"
+  ],
+  "anlima-purbachal": [
+    "/images/projects/anlima-purbachal/lake-view-01.webp",
+    "/images/projects/anlima-purbachal/exterior-day-01.webp",
+    "/images/projects/anlima-purbachal/entrance-night-01.webp",
+    "/images/projects/anlima-purbachal/pool-render-01.webp",
+    "/images/projects/anlima-purbachal/pool-lilies-01.webp",
+    "/images/projects/anlima-purbachal/dining-hall-01.webp",
+    "/images/projects/anlima-purbachal/dining-render-01.webp",
+    "/images/projects/anlima-purbachal/brick-walkway-01.webp",
+    "/images/projects/anlima-purbachal/bedroom-render-01.webp"
+  ],
+  "hai-residence-noakhali": [
+    "/images/projects/hai-residence-noakhali/courtyard-pool-01.webp",
+    "/images/projects/hai-residence-noakhali/courtyard-pool-02.webp",
+    "/images/projects/hai-residence-noakhali/exterior-facade-01.webp",
+    "/images/projects/hai-residence-noakhali/exterior-green-facade-01.webp",
+    "/images/projects/hai-residence-noakhali/living-room-01.webp",
+    "/images/projects/hai-residence-noakhali/living-room-double-height-01.webp",
+    "/images/projects/hai-residence-noakhali/staircase-01.webp",
+    "/images/projects/hai-residence-noakhali/garden-01.webp",
+    "/images/projects/hai-residence-noakhali/bathroom-tub-01.webp",
+    "/images/projects/hai-residence-noakhali/bathroom-vanity-01.webp"
+  ]
+}

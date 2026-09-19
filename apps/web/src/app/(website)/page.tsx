@@ -20,7 +20,7 @@ import { SITE, whatsappUrl } from "@/lib/site";
 
 export const metadata: Metadata = {
   description:
-    "ArcDev is a Dhaka real estate developer: construction funding and joint development for landowners, engineering and interior design, project management, and managed investment.",
+    "Arc Development Pvt. Ltd. is a Dhaka firm of architects, engineers and construction managers: construction funding and joint development for landowners, engineering and interior design, project management, and managed investment.",
   alternates: { canonical: "/" },
 };
 
@@ -39,7 +39,7 @@ export default async function HomePage() {
       <HeroSlideshow>
         <div className="max-w-3xl">
           <p className="text-sm font-semibold uppercase tracking-[0.16em] text-gold-bright">
-            Real estate developer · Dhaka
+            Architects, Engineers & Construction Managers · Dhaka
           </p>
           <h1 className="mt-5 text-4xl font-bold leading-[1.05] sm:text-6xl lg:text-7xl">
             <SplitWords text="From land to handover, one developer." />
@@ -226,7 +226,7 @@ export default async function HomePage() {
       {/* 9. Closing call to action */}
       <section aria-labelledby="cta-title" className="relative isolate overflow-hidden bg-navy-deep text-white">
         <div data-parallax="8" className="absolute inset-x-0 top-[-10%] -z-20 h-[120%]">
-          <Image src="/images/sample/city-sunset.webp" alt="" fill sizes="100vw" className="object-cover" />
+          <Image src="/images/projects/anlima-purbachal/entrance-night-01.webp" alt="" fill sizes="100vw" className="object-cover" />
         </div>
         <div aria-hidden="true" className="absolute inset-0 -z-10 bg-navy-deep/80" />
         <div className="mx-auto max-w-4xl px-4 py-24 text-center sm:px-6 sm:py-32">

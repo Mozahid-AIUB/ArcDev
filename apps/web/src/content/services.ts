@@ -18,7 +18,7 @@ export interface ServiceContent {
 
 export const SERVICE_CONTENT: Record<ServiceSlug, ServiceContent> = {
   fund: {
-    image: "/images/sample/land-clearing.webp",
+    image: "/images/projects/joynal-garden/exterior-01.webp",
     lead: "You own the land. We fund and build the building on it.",
     overview: [
       "Many landowners in Dhaka have the plot but not the capital to build. ArcDev funds the whole construction — design, approvals, materials and labour — so the building goes up without you taking a loan.",
@@ -56,7 +56,7 @@ export const SERVICE_CONTENT: Record<ServiceSlug, ServiceContent> = {
   },
 
   landshare: {
-    image: "/images/sample/land-plot.webp",
+    image: "/images/projects/runner-apartment-complex/exterior-01.webp",
     lead: "Several owners, one plot, one building everyone agrees on.",
     overview: [
       "When a plot is shared between heirs or co-owners, agreeing on a sale or a build is often the hardest part. ArcDev works with every owner to turn the shared plot into a building where each owner gets their own flats.",
@@ -94,7 +94,7 @@ export const SERVICE_CONTENT: Record<ServiceSlug, ServiceContent> = {
   },
 
   interior: {
-    image: "/images/sample/interior-living.webp",
+    image: "/images/projects/royal-group-guest-house/living-room-01.webp",
     lead: "From bare walls to a home you can move straight into.",
     overview: [
       "Our interior team designs and finishes apartments, offices and shops — layout, lighting, furniture, kitchens and bathrooms — with drawings and an itemised quotation before work begins.",
@@ -132,7 +132,7 @@ export const SERVICE_CONTENT: Record<ServiceSlug, ServiceContent> = {
   },
 
   engineering: {
-    image: "/images/sample/engineering-drawings.webp",
+    image: "/images/projects/desco-chq-nikunjo/render-terrace-01.webp",
     lead: "Drawings that pass approval and stand for decades.",
     overview: [
       "ArcDev's engineers prepare the full set of drawings a building needs — architectural, structural, electrical, plumbing and fire safety — designed to the Bangladesh National Building Code.",
@@ -170,7 +170,7 @@ export const SERVICE_CONTENT: Record<ServiceSlug, ServiceContent> = {
   },
 
   management: {
-    image: "/images/sample/site-piling.webp",
+    image: "/images/projects/appropriate-apparels/construction-01.webp",
     lead: "One team responsible for your project, start to finish.",
     overview: [
       "If you're building with your own money, ArcDev can run the whole project for you: budget, contractors, materials, quality checks and the schedule.",
@@ -208,7 +208,7 @@ export const SERVICE_CONTENT: Record<ServiceSlug, ServiceContent> = {
   },
 
   investment: {
-    image: "/images/sample/glass-towers.webp",
+    image: "/images/projects/imperial-commercial-center/exterior-02.webp",
     lead: "Put your savings into buildings, with every step reported.",
     overview: [
       "ArcDev invites investors to fund named projects. Your money is tied to a specific building, and you receive statements as construction progresses.",

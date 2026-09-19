@@ -16,6 +16,13 @@ export function organizationJsonLd() {
     name: SITE.name,
     url: SITE.url,
     description: SITE.description,
+    logo: absoluteUrl("/images/brand/logo-mark.png"),
+    telephone: SITE.phone,
+    email: SITE.email,
+    address: [
+      { "@type": "PostalAddress", streetAddress: SITE.address, addressLocality: "Dhaka", addressCountry: "BD" },
+      { "@type": "PostalAddress", streetAddress: SITE.addressSylhet, addressLocality: "Sylhet", addressCountry: "BD" },
+    ],
   };
 }
 

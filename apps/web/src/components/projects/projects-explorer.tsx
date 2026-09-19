@@ -20,6 +20,9 @@ const KIND_OPTIONS: { value: KindFilter; label: string }[] = [
   { value: "all", label: "All types" },
   { value: "residential", label: "Residential" },
   { value: "commercial", label: "Commercial" },
+  { value: "industrial", label: "Industrial" },
+  { value: "hotel-resort", label: "Hotel & Resort" },
+  { value: "interior", label: "Interior" },
 ];
 
 function FilterButton({

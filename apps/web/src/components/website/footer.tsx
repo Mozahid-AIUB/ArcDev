@@ -65,7 +65,14 @@ export function Footer() {
                 {SITE.email}
               </a>
             </li>
-            <li className="py-2.5">{SITE.address}</li>
+            <li className="py-2.5 leading-relaxed">
+              <span className="block font-semibold text-white/90">Dhaka</span>
+              {SITE.address}
+            </li>
+            <li className="py-2.5 leading-relaxed">
+              <span className="block font-semibold text-white/90">Sylhet</span>
+              {SITE.addressSylhet}
+            </li>
           </ul>
         </div>
       </div>

@@ -34,12 +34,20 @@ export async function generateMetadata({ params }: PageProps<"/projects/[slug]">
 
 const sqft = (value: number) => value.toLocaleString("en-US");
 
+const KIND_LABEL: Record<Project["kind"], string> = {
+  residential: "Residential",
+  commercial: "Commercial",
+  industrial: "Industrial",
+  "hotel-resort": "Hotel & Resort",
+  interior: "Interior",
+};
+
 function kindLabel(project: Project) {
-  return project.kind === "commercial" ? "Commercial" : "Residential";
+  return KIND_LABEL[project.kind];
 }
 
 function projectFacts(project: Project): { label: string; value: string }[] {
-  const commercial = project.kind === "commercial";
+  const commercial = project.kind === "commercial" || project.kind === "industrial";
   const facts: { label: string; value: string }[] = [];
   if (project.landKatha !== undefined) facts.push({ label: "Land", value: `${project.landKatha} katha` });
   if (project.storeys !== undefined) facts.push({ label: "Storeys", value: String(project.storeys) });
@@ -68,7 +76,7 @@ function keyNumbers(project: Project): KeyNumber[] {
   }
   if (project.units !== undefined) {
     numbers.push({
-      label: project.kind === "commercial" ? "Floors" : "Units",
+      label: project.kind === "commercial" || project.kind === "industrial" ? "Floors" : "Units",
       value: String(project.units),
       count: project.units,
     });

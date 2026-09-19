@@ -21,14 +21,14 @@ function formatNumber(value: number, decimals = 0) {
   return value.toLocaleString("en-US", { minimumFractionDigits: decimals, maximumFractionDigits: decimals });
 }
 
-/** "Head of Engineering" -> "HE": first letters of the capitalised words. */
-function initials(role: string) {
-  return role
+/** "Deanna Alam" -> "DA": first letters of each name, for the fallback avatar. */
+function initials(name: string) {
+  return name
     .split(/\s+/)
-    .filter((word) => /^[A-Z]/.test(word))
     .map((word) => word[0])
     .join("")
-    .slice(0, 3);
+    .slice(0, 2)
+    .toUpperCase();
 }
 
 export default function AboutPage() {
@@ -41,8 +41,8 @@ export default function AboutPage() {
         ]}
         eyebrow={<p className="text-sm font-semibold uppercase tracking-[0.14em] text-gold-bright">About ArcDev</p>}
         title="Building Dhaka, one plot at a time"
-        intro="A small Dhaka engineering practice that grew into a developer taking projects from an empty plot to finished flats."
-        image="/images/sample/dhaka-motijheel.webp"
+        intro="Architects, engineers and construction managers delivering commercial towers, homes, factories and interiors across Dhaka and Sylhet."
+        image="/images/projects/imperial-commercial-center/exterior-01.webp"
       />
 
       {/* Story */}
@@ -150,19 +150,30 @@ export default function AboutPage() {
           <ul className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {ABOUT.leadership.map((person) => (
               <li
-                key={person.role}
+                key={person.name}
                 data-reveal=""
-                className="flex items-center gap-5 border-t-4 border-gold bg-panel p-6 shadow-sm"
+                className="flex flex-col gap-5 border-t-4 border-gold bg-panel p-6 shadow-sm sm:flex-row sm:items-start"
               >
-                <span
-                  aria-hidden="true"
-                  className="grid size-20 shrink-0 place-items-center rounded-full bg-navy font-display text-2xl font-bold text-gold-bright"
-                >
-                  {initials(person.role)}
-                </span>
+                {person.photo ? (
+                  <Image
+                    src={person.photo}
+                    alt={person.name}
+                    width={80}
+                    height={80}
+                    className="size-20 shrink-0 rounded-full object-cover"
+                  />
+                ) : (
+                  <span
+                    aria-hidden="true"
+                    className="grid size-20 shrink-0 place-items-center rounded-full bg-navy font-display text-2xl font-bold text-gold-bright"
+                  >
+                    {initials(person.name)}
+                  </span>
+                )}
                 <div className="min-w-0">
-                  <h3 className="text-xl font-bold text-navy">{person.role}</h3>
-                  <p className="mt-1 text-ink-soft">{person.name}</p>
+                  <h3 className="text-xl font-bold text-navy">{person.name}</h3>
+                  <p className="mt-1 font-semibold text-gold-deep">{person.role}</p>
+                  {person.bio && <p className="mt-2 text-[15px] leading-relaxed text-ink-soft">{person.bio}</p>}
                 </div>
               </li>
             ))}
@@ -207,7 +218,7 @@ export default function AboutPage() {
       {/* CTA */}
       <section aria-labelledby="about-cta-heading" className="relative isolate overflow-hidden bg-navy text-white">
         <div data-parallax="8" className="absolute inset-x-0 top-[-10%] -z-20 h-[120%]">
-          <Image src="/images/sample/hero-construction.webp" alt="" fill sizes="100vw" className="object-cover" />
+          <Image src="/images/projects/hai-residence-noakhali/exterior-facade-01.webp" alt="" fill sizes="100vw" className="object-cover" />
         </div>
         <div aria-hidden="true" className="absolute inset-0 -z-10 bg-navy-deep/80" />
         <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 sm:py-28">

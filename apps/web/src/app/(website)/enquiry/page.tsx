@@ -35,7 +35,7 @@ export default function EnquiryPage() {
         ]}
         title="Tell us what you need"
         intro="Three short steps: choose a service, add a few details, and leave a number we can call."
-        image="/images/sample/city-night.webp"
+        image="/images/projects/anlima-purbachal/entrance-night-01.webp"
       />
 
       <section aria-label="Enquiry form" className="bg-ground py-16 sm:py-24">

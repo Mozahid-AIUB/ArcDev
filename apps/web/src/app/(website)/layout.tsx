@@ -16,7 +16,7 @@ export default function WebsiteLayout({ children }: { children: ReactNode }) {
       </a>
       {!isProductionSite && (
         <p className="bg-gold-bright px-4 py-1.5 text-center text-[13px] font-medium text-navy">
-          Preview site — photos, projects and figures are samples until ArcDev supplies its own.
+          Preview site — under review before it goes live at arcdevltd.com.
         </p>
       )}
       <Header />

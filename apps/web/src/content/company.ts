@@ -1,11 +1,8 @@
-// SAMPLE figures and copy for the website mock-up.
-// Every number, year and claim here must be replaced with ArcDev's real details before launch.
-
 export const COMPANY_FACTS: { label: string; value: string }[] = [
-  { label: "In operation", value: "Since 2014" },
-  { label: "Head office", value: "Dhaka, Bangladesh" },
+  { label: "Legal name", value: "Arc Development Pvt. Ltd." },
+  { label: "Head office", value: "Uttara, Dhaka" },
+  { label: "Second office", value: "Akhalia, Sylhet" },
   { label: "Services", value: "Six, under one roof" },
-  { label: "Working with", value: "Landowners, buyers, investors" },
   { label: "Design standard", value: "Bangladesh National Building Code" },
 ];
 
@@ -18,11 +15,11 @@ export interface Stat {
 }
 
 export const COMPANY_STATS: Stat[] = [
-  { value: 12, label: "years building in Dhaka" },
-  { value: 38, label: "projects handed over" },
-  { value: 9, label: "buildings under construction" },
-  { value: 1.2, decimals: 1, suffix: "M", label: "sq ft delivered" },
-  { value: 420, suffix: "+", label: "families moved in" },
+  { value: 25, suffix: "+", label: "projects delivered" },
+  { value: 9, label: "project categories" },
+  { value: 2, label: "offices, Dhaka and Sylhet" },
+  { value: 60, suffix: "K", label: "sq ft, largest single factory" },
+  { value: 2, label: "founding partners" },
 ];
 
 export const PROCESS: { title: string; text: string; duration: string }[] = [
@@ -33,22 +30,24 @@ export const PROCESS: { title: string; text: string; duration: string }[] = [
   { title: "Handover", text: "Final inspection, flat registration and the keys.", duration: "1 month" },
 ];
 
-/** Neighbourhoods for the scrolling band on the home page. */
+/** Neighbourhoods and districts ArcDev has built in, drawn from the portfolio. */
 export const AREAS = [
-  "Bashundhara R/A",
   "Uttara",
-  "Mirpur DOHS",
-  "Dhanmondi",
-  "Aftabnagar",
+  "Gulshan",
   "Banani",
-  "Mohammadpur",
-  "Bashabo",
+  "Elephant Road",
+  "Satmasjid Road",
+  "Mirpur",
+  "Purbachal",
+  "Gazipur",
+  "Noakhali",
+  "Sylhet",
 ];
 
 export const HOME_FAQS: { q: string; a: string }[] = [
   {
     q: "Where does ArcDev build?",
-    a: "Mostly in Dhaka's residential areas. Tell us where your land is and we'll tell you honestly whether it fits.",
+    a: "Mostly across Dhaka, with completed work in Gazipur, Noakhali and a second office in Sylhet. Tell us where your land or project is and we'll tell you honestly whether it fits.",
   },
   {
     q: "Do I pay anything to get an offer for my land?",
@@ -70,8 +69,8 @@ export const HOME_FAQS: { q: string; a: string }[] = [
 
 export const ABOUT = {
   story: [
-    "ArcDev began as a small engineering practice in Dhaka and grew into a developer that can take a project from an empty plot to finished flats.",
-    "Today the company funds construction, designs and engineers buildings, manages sites and brings investors into projects — all under one roof, so landowners, buyers and investors deal with one team from the first visit to the last key.",
+    "Arc Development Pvt. Ltd. is a Dhaka-based team of architects, engineers, planners and interior designers that also manages construction, start to finish.",
+    "The company's portfolio spans commercial towers, apartment buildings, factories, hospitality and dozens of interior fit-outs — for landowners who bring the plot, investors who bring capital, and businesses that need a building or a workspace built right. One team stays with each project from the first site visit to the last key.",
   ],
   values: [
     { title: "Written, not promised", text: "Shares, prices and timelines go into signed agreements before work starts." },
@@ -80,16 +79,24 @@ export const ABOUT = {
     { title: "One team", text: "Design, construction and after-sales stay with the same people." },
   ],
   leadership: [
-    { role: "Managing Director", name: "Name to be confirmed" },
-    { role: "Head of Engineering", name: "Name to be confirmed" },
-    { role: "Head of Finance", name: "Name to be confirmed" },
+    {
+      role: "Co-Founder & COO",
+      name: "Deanna Alam",
+      bio: "Bachelor of Architecture, University of Asia Pacific. Previously with DWm4 Architects (2007) and Ranks Real Estate (2012) before co-founding Arc Development.",
+    },
+    {
+      role: "Managing Director",
+      name: "Shihab Amin Mustafa",
+      bio: "Architect and urban designer, LEED Professional. Bachelor of Architecture, BRAC University. Fulbright Scholar (Harvard), F.URP (MIT), MAUD (Oxford Brookes).",
+      photo: "/images/team/shihab-amin-mustafa.webp",
+    },
   ],
   milestones: [
-    { year: "2014", text: "Founded as an engineering design practice" },
-    { year: "2016", text: "First joint development with a landowner in Mirpur" },
-    { year: "2019", text: "Interior design team formed" },
-    { year: "2021", text: "Tenth building handed over" },
-    { year: "2024", text: "Investment programme opened to individual investors" },
-    { year: "2026", text: "Customer portal for buyers and investors announced" },
+    { year: "2007", text: "Founding partners begin their careers in architecture and real estate in Dhaka" },
+    { year: "2012", text: "Groundwork laid for an independent practice combining design and development" },
+    { year: "2014", text: "Doors Showroom at Jamuna Future Park completed — among the firm's early interior fit-outs" },
+    { year: "2019", text: "Industrial portfolio grows with factories for Habitus Fashion and Appropriate Apparels" },
+    { year: "2021", text: "Imperial Commercial Center and Joynal Garden underway, ArcDev's largest towers to date" },
+    { year: "2026", text: "Portfolio spans commercial, residential, hospitality, industrial and interior work across Dhaka and Sylhet" },
   ],
 };
