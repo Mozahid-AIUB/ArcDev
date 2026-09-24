@@ -173,6 +173,35 @@ html[data-motion] [data-line="y"] {
   animation: fill-x var(--fill-duration, 6s) linear forwards;
 }
 
+/* Service tiles that auto-flip between the service name and the client's request line. */
+@keyframes flip-card {
+  0%,
+  42% {
+    transform: rotateY(0deg);
+  }
+  50%,
+  92% {
+    transform: rotateY(180deg);
+  }
+  100% {
+    transform: rotateY(360deg);
+  }
+}
+.flip-card {
+  perspective: 1200px;
+}
+.flip-card-inner {
+  transform-style: preserve-3d;
+  animation: flip-card var(--flip-duration, 8s) ease-in-out infinite;
+  animation-delay: var(--flip-delay, 0s);
+}
+.flip-card-face {
+  backface-visibility: hidden;
+}
+.flip-card-face-back {
+  transform: rotateY(180deg);
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -186,7 +215,11 @@ html[data-motion] [data-line="y"] {
   .flow-x,
   .flow-x-reverse,
   .flow-y,
-  .ken-burns {
+  .ken-burns,
+  .flip-card-inner {
     animation: none !important;
+  }
+  .flip-card-face-back {
+    display: none;
   }
 }

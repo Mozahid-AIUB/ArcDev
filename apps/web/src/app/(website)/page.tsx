@@ -4,7 +4,7 @@ import Link from "next/link";
 import { HeroSlideshow } from "@/components/home/hero-slideshow";
 import { PartnerFlow } from "@/components/home/partner-flow";
 import { ProjectFilter } from "@/components/home/project-filter";
-import { ServiceCards } from "@/components/home/service-cards";
+import { ServiceFlipGrid } from "@/components/home/service-flip-grid";
 import { Marquee } from "@/components/motion/marquee";
 import { SplitWords } from "@/components/motion/split-words";
 import { buttonStyles } from "@/components/ui/button";
@@ -99,7 +99,7 @@ export default async function HomePage() {
             title="Six services, one team"
             intro="Pick the one that fits your land, your flat or your plan. Each has its own page with the steps, what's included and a request form."
           />
-          <ServiceCards />
+          <ServiceFlipGrid />
         </div>
       </section>
 
