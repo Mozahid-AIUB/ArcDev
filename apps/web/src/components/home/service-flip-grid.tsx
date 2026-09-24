@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { SERVICES } from "@arcdev/shared";
 import { ArrowRightIcon } from "@/components/website/icons";
+// Webhook auto-deploy verification ping (2026-09-24) — safe to remove after confirmed.
 
 /**
  * Six tone variants, one per service tile, cycled by index so the grid reads as a
