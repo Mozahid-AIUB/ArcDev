@@ -174,5 +174,11 @@
     "/images/projects/hai-residence-noakhali/garden-01.webp",
     "/images/projects/hai-residence-noakhali/bathroom-tub-01.webp",
     "/images/projects/hai-residence-noakhali/bathroom-vanity-01.webp"
-  ]
+  ],
+  "purba-residence": ["/images/projects/purba-residence/exterior-01.webp"],
+  "tauri-foundation": [
+    "/images/projects/tauri-foundation/exterior-01.webp",
+    "/images/projects/tauri-foundation/aerial-context-01.webp"
+  ],
+  "mount-adora-sylhet": ["/images/projects/mount-adora-sylhet/exterior-01.webp"]
 }
