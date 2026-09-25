@@ -1,7 +1,40 @@
 "use server";
 
+import { headers } from "next/headers";
 import nodemailer from "nodemailer";
 import { getService, requestFormSchema, type RequestForm, type Service } from "@arcdev/shared";
+
+const WINDOW_MS = 10 * 60 * 1000;
+const MAX_PER_WINDOW = 5;
+// One container serves the site, so an in-memory count per visitor is enough to stop form floods.
+const recentByIp = new Map<string, number[]>();
+
+async function clientIp() {
+  const list = await headers();
+  return (
+    list.get("cf-connecting-ip") ??
+    list.get("x-forwarded-for")?.split(",")[0]?.trim() ??
+    list.get("x-real-ip") ??
+    "unknown"
+  );
+}
+
+function overLimit(ip: string) {
+  const now = Date.now();
+  const recent = (recentByIp.get(ip) ?? []).filter((time) => now - time < WINDOW_MS);
+  if (recent.length >= MAX_PER_WINDOW) {
+    recentByIp.set(ip, recent);
+    return true;
+  }
+  recent.push(now);
+  recentByIp.set(ip, recent);
+  if (recentByIp.size > 5000) {
+    for (const [key, times] of recentByIp) {
+      if (times.every((time) => now - time >= WINDOW_MS)) recentByIp.delete(key);
+    }
+  }
+  return false;
+}
 
 export type SubmitState =
   | { status: "idle" }
@@ -39,6 +72,10 @@ export async function submitRequest(_previous: SubmitState, formData: FormData):
     message: values.message ?? "",
     details,
   });
+
+  if (parsed.success && overLimit(await clientIp())) {
+    return { status: "failed", values };
+  }
 
   if (!parsed.success) {
     const errors: Record<string, string> = {};
