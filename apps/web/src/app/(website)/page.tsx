@@ -95,7 +95,7 @@ export default async function HomePage() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6">
           <SectionHeading
             id="services-title"
-            eyebrow="What we do"
+            eyebrow="What we offer"
             title="Six services, one team"
             intro="Pick the one that fits your land, your flat or your plan. Each has its own page with the steps, what's included and a request form."
           />
