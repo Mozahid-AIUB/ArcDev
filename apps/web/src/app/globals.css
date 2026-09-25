@@ -227,6 +227,14 @@ html[data-motion] [data-line="y"] {
   -webkit-text-stroke: 1px currentColor;
 }
 
+/* Swipe tracks scroll by touch, arrows and dots; the native scrollbar would only add noise. */
+.no-scrollbar {
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
 /* Slow drift on the front photos, so a resting tile still feels alive. */
 @keyframes slow-zoom {
   from {

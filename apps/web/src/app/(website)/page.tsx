@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { HeroSlideshow } from "@/components/home/hero-slideshow";
 import { PartnerFlow } from "@/components/home/partner-flow";
-import { ProjectFilter } from "@/components/home/project-filter";
+import { ProjectCarousel } from "@/components/home/project-carousel";
 import { ServiceFlipGrid } from "@/components/home/service-flip-grid";
 import { Marquee } from "@/components/motion/marquee";
 import { SplitWords } from "@/components/motion/split-words";
@@ -30,6 +30,9 @@ function formatStat(value: number, decimals = 0) {
 
 export default async function HomePage() {
   const projects = await getProjects();
+  const ongoing = projects.filter((project) => project.status === "ongoing");
+  const completed = projects.filter((project) => project.status === "completed");
+  const upcoming = projects.filter((project) => project.status === "upcoming");
 
   return (
     <>
@@ -127,20 +130,47 @@ export default async function HomePage() {
         </ul>
       </section>
 
-      {/* 5. Projects */}
-      <section aria-labelledby="projects-title" className="bg-ground py-20 sm:py-28">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6">
-          <div className="mb-10 flex flex-wrap items-end justify-between gap-x-8 gap-y-4">
-            <SectionHeading id="projects-title" eyebrow="Projects" title="Buildings in progress and handed over" />
-            <Link
-              href="/projects"
-              className="inline-flex min-h-11 items-center gap-2 font-semibold text-gold-deep hover:text-navy"
-            >
-              All projects
-              <ArrowRightIcon />
-            </Link>
-          </div>
-          <ProjectFilter projects={projects} />
+      {/* 5. Projects, one status per section, each swiped one project at a time */}
+      <section aria-labelledby="ongoing-title" className="overflow-hidden bg-ground py-20 sm:py-28">
+        <SectionHeading
+          id="ongoing-title"
+          align="center"
+          eyebrow="Under construction"
+          title="Ongoing projects"
+          intro="Buildings ArcDev is designing and building right now."
+          className="px-4"
+        />
+        <ProjectCarousel projects={ongoing} label="Ongoing projects" />
+      </section>
+
+      <section aria-labelledby="completed-title" className="overflow-hidden bg-navy-deep py-20 sm:py-28">
+        <SectionHeading
+          id="completed-title"
+          align="center"
+          tone="dark"
+          eyebrow="Handed over"
+          title="Completed projects"
+          intro="Homes, offices, factories and interiors, finished and in use."
+          className="px-4"
+        />
+        <ProjectCarousel projects={completed} label="Completed projects" tone="dark" />
+      </section>
+
+      <section aria-labelledby="upcoming-title" className="overflow-hidden bg-sand py-20 sm:py-28">
+        <SectionHeading
+          id="upcoming-title"
+          align="center"
+          eyebrow="Coming next"
+          title="Upcoming projects"
+          intro="Developments in planning, from a Sylhet condominium to a 46-acre township."
+          className="px-4"
+        />
+        <ProjectCarousel projects={upcoming} label="Upcoming projects" />
+        <div className="mt-10 flex justify-center px-4">
+          <Link href="/projects" className={buttonStyles.outline}>
+            See all projects
+            <ArrowRightIcon />
+          </Link>
         </div>
       </section>
 

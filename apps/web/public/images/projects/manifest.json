@@ -180,5 +180,14 @@
     "/images/projects/tauri-foundation/exterior-01.webp",
     "/images/projects/tauri-foundation/aerial-context-01.webp"
   ],
-  "mount-adora-sylhet": ["/images/projects/mount-adora-sylhet/exterior-01.webp"]
+  "mount-adora-sylhet": ["/images/projects/mount-adora-sylhet/exterior-01.webp"],
+  "prottyasha-gated-city": [
+    "/images/projects/prottyasha-gated-city/aerial-01.webp",
+    "/images/projects/prottyasha-gated-city/streetscape-01.webp",
+    "/images/projects/prottyasha-gated-city/riverfront-01.webp",
+    "/images/projects/prottyasha-gated-city/streetscape-02.webp",
+    "/images/projects/prottyasha-gated-city/civic-centre-01.webp",
+    "/images/projects/prottyasha-gated-city/campus-aerial-01.webp",
+    "/images/projects/prottyasha-gated-city/masterplan-aerial-01.webp"
+  ]
 }

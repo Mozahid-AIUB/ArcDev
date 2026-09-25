@@ -508,4 +508,30 @@ export const PROJECTS: Project[] = [
     amenities: ["120 apartments across landscaped towers", "Rooftop gardens", "Gated entrance with landscaped drive"],
     images: ["/images/projects/mount-adora-sylhet/exterior-01.webp"],
   },
+  {
+    slug: "prottyasha-gated-city",
+    name: "Prottyasha Gated City",
+    location: "Site to be announced",
+    status: "upcoming",
+    kind: "residential",
+    summary: "A 46-acre riverside township of 6,775 apartments, in joint venture with Rakeen Development Company.",
+    description:
+      "Prottyasha Gated City is a 46-acre township planned for the Prottyasha Cooperative Society: 6,775 apartments across residential towers, with a civic centre, schools, offices, parks and a riverfront promenade, over 12.4 million square feet of built area. ArcDev is developing it in joint venture with Rakeen Development Company (BD) Ltd. The project was proposed in 2025 and is at the signing stage, with funding arranged through a foreign partner.",
+    units: 6775,
+    amenities: [
+      "46-acre gated township",
+      "Riverfront promenade and bridge",
+      "Civic centre, schools and offices on site",
+      "Parks and children's play areas",
+    ],
+    images: [
+      "/images/projects/prottyasha-gated-city/aerial-01.webp",
+      "/images/projects/prottyasha-gated-city/streetscape-01.webp",
+      "/images/projects/prottyasha-gated-city/riverfront-01.webp",
+      "/images/projects/prottyasha-gated-city/streetscape-02.webp",
+      "/images/projects/prottyasha-gated-city/civic-centre-01.webp",
+      "/images/projects/prottyasha-gated-city/campus-aerial-01.webp",
+      "/images/projects/prottyasha-gated-city/masterplan-aerial-01.webp",
+    ],
+  },
 ];

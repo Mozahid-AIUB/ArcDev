@@ -3,7 +3,6 @@ import { MotionRoot } from "@/components/motion/motion-root";
 import { ContactButtons } from "@/components/website/contact-buttons";
 import { Footer } from "@/components/website/footer";
 import { Header } from "@/components/website/header";
-import { isProductionSite } from "@/lib/site";
 
 export default function WebsiteLayout({ children }: { children: ReactNode }) {
   return (
@@ -14,11 +13,6 @@ export default function WebsiteLayout({ children }: { children: ReactNode }) {
       >
         Skip to content
       </a>
-      {!isProductionSite && (
-        <p className="bg-gold-bright px-4 py-1.5 text-center text-[13px] font-medium text-navy">
-          Preview site — under review before it goes live at arcdevltd.com.
-        </p>
-      )}
       <Header />
       <main id="main" className="flex-1">
         {children}
