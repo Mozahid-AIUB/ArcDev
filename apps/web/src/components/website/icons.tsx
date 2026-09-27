@@ -30,6 +30,41 @@ export function CloseIcon({ className = "size-6" }: IconProps) {
   );
 }
 
+export function ShieldCheckIcon({ className = "size-6" }: IconProps) {
+  return (
+    <svg {...stroke} className={className}>
+      <path d="M12 3 5 6v5c0 4.5 3 8.3 7 10 4-1.7 7-5.5 7-10V6l-7-3Z" />
+      <path d="m9 12 2 2 4-4" />
+    </svg>
+  );
+}
+
+export function DocumentIcon({ className = "size-6" }: IconProps) {
+  return (
+    <svg {...stroke} className={className}>
+      <path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8l-5-5Z" />
+      <path d="M14 3v5h5M9 13h6M9 17h4" />
+    </svg>
+  );
+}
+
+export function AwardIcon({ className = "size-6" }: IconProps) {
+  return (
+    <svg {...stroke} className={className}>
+      <circle cx="12" cy="9" r="6" />
+      <path d="m8.5 13.8-1.5 7.2 5-3 5 3-1.5-7.2" />
+    </svg>
+  );
+}
+
+export function QuoteIcon({ className = "size-8" }: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" className={className}>
+      <path d="M9.5 6C6.5 7 4.5 9.6 4.5 13v5h6v-6h-3c0-2 1-3.6 3-4.4L9.5 6Zm10 0c-3 1-5 3.6-5 7v5h6v-6h-3c0-2 1-3.6 3-4.4L19.5 6Z" />
+    </svg>
+  );
+}
+
 export function ArrowRightIcon({ className = "size-5" }: IconProps) {
   return (
     <svg {...stroke} className={className}>

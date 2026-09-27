@@ -4,6 +4,11 @@ import { headers } from "next/headers";
 import nodemailer from "nodemailer";
 import { getService, requestFormSchema, type RequestForm, type Service } from "@arcdev/shared";
 
+/** Short forms that reuse a service's request, labelled so the office can tell them apart. */
+const TOPICS: Record<string, string> = {
+  "land-assessment": "free land assessment request",
+};
+
 const WINDOW_MS = 10 * 60 * 1000;
 const MAX_PER_WINDOW = 5;
 // One container serves the site, so an in-memory count per visitor is enough to stop form floods.
@@ -85,8 +90,10 @@ export async function submitRequest(_previous: SubmitState, formData: FormData):
     return { status: "invalid", errors, values };
   }
 
+  const topic = TOPICS[values.topic ?? ""];
+
   try {
-    await emailOffice(service, parsed.data);
+    await emailOffice(service, parsed.data, topic);
   } catch (error) {
     console.error("Could not email the request to the office", error);
     return { status: "failed", values };
@@ -95,8 +102,9 @@ export async function submitRequest(_previous: SubmitState, formData: FormData):
   return { status: "sent", name: parsed.data.name, phone: parsed.data.phone };
 }
 
-async function emailOffice(service: Service, request: RequestForm) {
+async function emailOffice(service: Service, request: RequestForm, topic?: string) {
   const lines = [
+    topic && `Request: ${topic}`,
     `Service: ${service.name}`,
     `Name: ${request.name}`,
     `Phone: ${request.phone}`,
@@ -132,7 +140,7 @@ async function emailOffice(service: Service, request: RequestForm) {
     from: REQUEST_EMAIL_FROM ?? SMTP_USER,
     to: REQUEST_EMAIL_TO,
     replyTo: request.email || undefined,
-    subject: `New ${service.name} request from ${request.name}`,
+    subject: `New ${topic ?? `${service.name} request`} from ${request.name}`,
     text,
   });
 }

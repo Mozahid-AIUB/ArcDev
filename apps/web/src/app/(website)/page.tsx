@@ -3,13 +3,14 @@ import Image from "next/image";
 import Link from "next/link";
 import type { ReactNode } from "react";
 import { FullScreen } from "@/components/home/full-screen";
+import { LandAssessmentForm } from "@/components/home/land-assessment-form";
 import { PartnerFlow } from "@/components/home/partner-flow";
 import { ProjectCarousel } from "@/components/home/project-carousel";
 import { ScreenDots } from "@/components/home/screen-dots";
 import { ServiceFlipGrid } from "@/components/home/service-flip-grid";
+import { Credentials, Testimonials, TrustedBy } from "@/components/home/trust-sections";
 import { Marquee } from "@/components/motion/marquee";
 import { SplitWords } from "@/components/motion/split-words";
-import { buttonStyles } from "@/components/ui/button";
 import { FactList } from "@/components/ui/fact-list";
 import { FaqList } from "@/components/ui/faq-list";
 import { SectionHeading } from "@/components/ui/section-heading";
@@ -127,52 +128,59 @@ export default async function HomePage() {
             Tell us about your land, your home or your plan, and ArcDev will call you back.
           </p>
 
-          <ul className="mt-8 grid gap-3 sm:grid-cols-3 sm:gap-4">
-            <ContactCard href={`tel:${SITE.phone}`} icon={<PhoneIcon />} label="Call us" value={SITE.phoneDisplay} />
-            <ContactCard
-              href={whatsappUrl}
-              external
-              icon={<ChatIcon />}
-              label="WhatsApp"
-              value={SITE.phoneDisplay}
-            />
-            <ContactCard href={`mailto:${SITE.email}`} icon={<MailIcon />} label="Email" value={SITE.email} />
-          </ul>
+          <div className="mt-8 grid gap-4 lg:mt-10 lg:grid-cols-[1fr_1.05fr] lg:gap-6">
+            <div className="order-2 flex flex-col gap-3 lg:order-1">
+              <ul className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-1">
+                <ContactCard
+                  href={`tel:${SITE.phone}`}
+                  icon={<PhoneIcon />}
+                  label="Call us"
+                  value={SITE.phoneDisplay}
+                  shortValue="Call now"
+                />
+                <ContactCard href={whatsappUrl} external icon={<ChatIcon />} label="WhatsApp" value="Message us" />
+                <ContactCard
+                  href={`mailto:${SITE.email}`}
+                  icon={<MailIcon />}
+                  label="Email"
+                  value={SITE.email}
+                  className="col-span-2 sm:col-span-1"
+                />
+              </ul>
+              <ul className="grid gap-3 sm:grid-cols-2">
+                <OfficeCard label="Dhaka office" address={SITE.address} />
+                <OfficeCard label="Sylhet office" address={SITE.addressSylhet} />
+              </ul>
+              <Link
+                href="/enquiry"
+                className="inline-flex min-h-11 items-center gap-2 self-start text-sm font-semibold text-gold-bright hover:text-white"
+              >
+                Buying, investing or need a design? Send a detailed enquiry
+                <ArrowRightIcon className="size-4" />
+              </Link>
+            </div>
 
-          <ul className="mt-3 grid gap-3 sm:mt-4 sm:grid-cols-2 sm:gap-4">
-            <li data-reveal="" className="flex gap-3 rounded-xl border border-white/15 bg-white/5 p-4 backdrop-blur-sm sm:p-5">
-              <PinIcon className="mt-0.5 size-5 shrink-0 text-gold-bright" />
-              <p>
-                <span className="block text-xs font-semibold tracking-[0.16em] text-gold-bright uppercase">
-                  Dhaka office
-                </span>
-                <span className="mt-1 block text-[15px] leading-snug text-white/85">{SITE.address}</span>
-              </p>
-            </li>
-            <li data-reveal="" className="flex gap-3 rounded-xl border border-white/15 bg-white/5 p-4 backdrop-blur-sm sm:p-5">
-              <PinIcon className="mt-0.5 size-5 shrink-0 text-gold-bright" />
-              <p>
-                <span className="block text-xs font-semibold tracking-[0.16em] text-gold-bright uppercase">
-                  Sylhet office
-                </span>
-                <span className="mt-1 block text-[15px] leading-snug text-white/85">{SITE.addressSylhet}</span>
-              </p>
-            </li>
-          </ul>
-
-          <div data-reveal="" className="mt-7 flex flex-col justify-center gap-3 sm:flex-row">
-            <Link href="/enquiry" className={buttonStyles.primary}>
-              Send an enquiry
-              <ArrowRightIcon />
-            </Link>
-            <Link href="/projects" className={`${buttonStyles.outlineOnDark} max-sm:hidden`}>
-              See all projects
-            </Link>
+            <div
+              data-reveal="right"
+              className="relative order-1 overflow-hidden rounded-2xl border border-gold-bright/30 lg:order-2 bg-linear-to-br from-navy to-navy-deep shadow-2xl shadow-black/40"
+            >
+              <span
+                aria-hidden="true"
+                className="absolute inset-x-0 top-0 h-1 bg-linear-to-r from-gold-deep via-gold-bright to-gold-deep"
+              />
+              <span aria-hidden="true" className="absolute -top-24 -right-24 size-64 rounded-full bg-gold-bright/10 blur-3xl" />
+              <div className="relative h-full">
+                <LandAssessmentForm />
+              </div>
+            </div>
           </div>
         </div>
       </FullScreen>
 
       {/* More about ArcDev, below the client's five screens. */}
+      <TrustedBy />
+      <Credentials />
+
       <section aria-labelledby="partners-title" className="bg-ground py-20 sm:py-28">
         <div className="mx-auto max-w-7xl px-4 sm:px-6">
           <div className="grid gap-12 lg:grid-cols-[1.2fr_1fr] lg:gap-20">
@@ -224,6 +232,8 @@ export default async function HomePage() {
           ))}
         </ul>
       </section>
+
+      <Testimonials />
 
       <section aria-labelledby="process-title" className="bg-panel py-20 sm:py-28">
         <div className="mx-auto max-w-7xl px-4 sm:px-6">
@@ -304,32 +314,60 @@ export default async function HomePage() {
   );
 }
 
+function OfficeCard({ label, address }: { label: string; address: string }) {
+  return (
+    <li data-reveal="" className="flex gap-3 rounded-xl border border-white/15 bg-white/5 p-4 backdrop-blur-sm">
+      <PinIcon className="mt-0.5 size-5 shrink-0 text-gold-bright" />
+      <p>
+        <span className="block text-xs font-semibold tracking-[0.16em] text-gold-bright uppercase">{label}</span>
+        <span className="mt-1 block text-sm leading-snug text-white/85">{address}</span>
+      </p>
+    </li>
+  );
+}
+
 function ContactCard({
   href,
   icon,
   label,
   value,
   external = false,
+  className = "",
+  shortValue,
 }: {
   href: string;
   icon: ReactNode;
   label: string;
   value: string;
   external?: boolean;
+  className?: string;
+  /** Shown instead of the value on phones, where the full value would wrap. */
+  shortValue?: string;
 }) {
   return (
-    <li data-reveal="">
+    <li data-reveal="" className={className}>
       <a
         href={href}
         {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-        className="group flex h-full items-center gap-4 rounded-xl border border-white/15 bg-white/5 p-4 backdrop-blur-sm transition-colors duration-300 hover:border-gold-bright/60 hover:bg-white/10 sm:p-5"
+        className="group flex h-full items-center gap-3 rounded-xl border border-white/15 bg-white/5 p-3 backdrop-blur-sm transition-colors duration-300 hover:border-gold-bright/60 hover:bg-white/10 sm:gap-4 sm:p-4"
       >
-        <span className="grid size-11 shrink-0 place-items-center rounded-full bg-gold-bright text-navy-deep transition-transform duration-300 group-hover:scale-110">
+        <span className="grid size-9 shrink-0 place-items-center rounded-full bg-gold-bright text-navy-deep transition-transform duration-300 group-hover:scale-110 sm:size-11">
           {icon}
         </span>
         <span className="min-w-0">
-          <span className="block text-xs font-semibold tracking-[0.16em] text-gold-bright uppercase">{label}</span>
-          <span className="mt-0.5 block truncate font-semibold text-white">{value}</span>
+          <span className="block text-[11px] font-semibold tracking-[0.16em] text-gold-bright uppercase sm:text-xs">
+            {label}
+          </span>
+          <span className="mt-0.5 block text-sm font-semibold break-all text-white tabular-nums sm:text-base">
+            {shortValue ? (
+              <>
+                <span className="sm:hidden">{shortValue}</span>
+                <span className="max-sm:hidden">{value}</span>
+              </>
+            ) : (
+              value
+            )}
+          </span>
         </span>
       </a>
     </li>
