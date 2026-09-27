@@ -55,6 +55,10 @@ export function Header() {
     <header
       className={`sticky top-0 z-40 bg-navy text-white transition-shadow duration-300 ${scrolled ? "shadow-lg shadow-navy-deep/30" : ""}`}
     >
+      <span
+        aria-hidden="true"
+        className="scroll-progress absolute inset-x-0 bottom-0 h-0.5 bg-linear-to-r from-gold-deep via-gold-bright to-gold-bright"
+      />
       {/* Phones and tablets: menu left, logo centred, section dots (home) or Enquire right. */}
       <div className="mx-auto grid h-16 max-w-7xl grid-cols-[1fr_auto_1fr] items-center px-3 sm:px-6 lg:hidden">
         <button

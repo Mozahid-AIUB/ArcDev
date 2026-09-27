@@ -229,6 +229,39 @@ html:has([data-screen]) {
   scroll-snap-align: start;
 }
 
+/* Faint drafting grid behind the process drawing. */
+.blueprint-bg {
+  background-image:
+    linear-gradient(rgb(255 255 255 / 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(255 255 255 / 0.035) 1px, transparent 1px),
+    linear-gradient(rgb(255 255 255 / 0.018) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(255 255 255 / 0.018) 1px, transparent 1px);
+  background-size:
+    96px 96px,
+    96px 96px,
+    24px 24px,
+    24px 24px;
+}
+
+/* Reading progress under the header, driven by scroll alone where the browser supports it. */
+.scroll-progress {
+  display: none;
+}
+@supports (animation-timeline: scroll()) {
+  .scroll-progress {
+    display: block;
+    transform: scaleX(0);
+    transform-origin: left center;
+    animation: scroll-progress linear both;
+    animation-timeline: scroll(root);
+  }
+}
+@keyframes scroll-progress {
+  to {
+    transform: scaleX(1);
+  }
+}
+
 /* Swipe tracks scroll by touch, arrows and dots; the native scrollbar would only add noise. */
 .no-scrollbar {
   scrollbar-width: none;
@@ -265,5 +298,8 @@ html:has([data-screen]) {
   .flow-y,
   .slow-zoom {
     animation: none !important;
+  }
+  .scroll-progress {
+    display: none !important;
   }
 }

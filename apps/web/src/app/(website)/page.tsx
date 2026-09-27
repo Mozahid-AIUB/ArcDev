@@ -2,8 +2,10 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import type { ReactNode } from "react";
+import { BlueprintProcess } from "@/components/home/blueprint-process";
 import { FullScreen } from "@/components/home/full-screen";
 import { LandAssessmentForm } from "@/components/home/land-assessment-form";
+import { Leadership } from "@/components/home/leadership";
 import { PartnerFlow } from "@/components/home/partner-flow";
 import { ProjectCarousel } from "@/components/home/project-carousel";
 import { ScreenDots } from "@/components/home/screen-dots";
@@ -16,7 +18,7 @@ import { FaqList } from "@/components/ui/faq-list";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { ArrowRightIcon, ChatIcon, MailIcon, PhoneIcon, PinIcon } from "@/components/website/icons";
 import { JsonLd } from "@/components/website/json-ld";
-import { AREAS, COMPANY_FACTS, COMPANY_STATS, HOME_FAQS, PROCESS } from "@/content/company";
+import { AREAS, COMPANY_FACTS, COMPANY_STATS, HOME_FAQS } from "@/content/company";
 import { getProjects } from "@/lib/data";
 import { organizationJsonLd } from "@/lib/seo";
 import { SITE, whatsappUrl } from "@/lib/site";
@@ -180,6 +182,30 @@ export default async function HomePage() {
       {/* More about ArcDev, below the client's five screens. */}
       <TrustedBy />
       <Credentials />
+      <Leadership />
+
+      <section aria-label="ArcDev in numbers" className="bg-navy-deep py-16 text-white sm:py-20">
+        <ul className="mx-auto grid max-w-7xl grid-cols-2 gap-x-6 gap-y-10 px-4 sm:px-6 lg:grid-cols-5 lg:gap-0">
+          {COMPANY_STATS.map((stat, index) => (
+            <li
+              key={stat.label}
+              data-reveal=""
+              className={`lg:border-l lg:border-white/15 lg:px-8 lg:first:border-l-0 lg:first:pl-0 ${
+                index === COMPANY_STATS.length - 1 ? "col-span-2 lg:col-span-1" : ""
+              }`}
+            >
+              <p className="font-display text-5xl font-bold leading-none tabular-nums text-gold-bright sm:text-6xl xl:text-7xl">
+                {stat.prefix && <span>{stat.prefix}</span>}
+                <span data-count={stat.value} data-decimals={stat.decimals}>
+                  {formatStat(stat.value, stat.decimals)}
+                </span>
+                {stat.suffix && <span>{stat.suffix}</span>}
+              </p>
+              <p className="mt-3 text-[17px] text-white/75">{stat.label}</p>
+            </li>
+          ))}
+        </ul>
+      </section>
 
       <section aria-labelledby="partners-title" className="bg-ground py-20 sm:py-28">
         <div className="mx-auto max-w-7xl px-4 sm:px-6">
@@ -210,82 +236,22 @@ export default async function HomePage() {
         </div>
       </section>
 
-      <section aria-label="ArcDev in numbers" className="bg-navy-deep py-16 text-white sm:py-20">
-        <ul className="mx-auto grid max-w-7xl grid-cols-2 gap-x-6 gap-y-10 px-4 sm:px-6 lg:grid-cols-5 lg:gap-0">
-          {COMPANY_STATS.map((stat, index) => (
-            <li
-              key={stat.label}
-              data-reveal=""
-              className={`lg:border-l lg:border-white/15 lg:px-8 lg:first:border-l-0 lg:first:pl-0 ${
-                index === COMPANY_STATS.length - 1 ? "col-span-2 lg:col-span-1" : ""
-              }`}
-            >
-              <p className="font-display text-5xl font-bold leading-none tabular-nums text-gold-bright sm:text-6xl xl:text-7xl">
-                {stat.prefix && <span>{stat.prefix}</span>}
-                <span data-count={stat.value} data-decimals={stat.decimals}>
-                  {formatStat(stat.value, stat.decimals)}
-                </span>
-                {stat.suffix && <span>{stat.suffix}</span>}
-              </p>
-              <p className="mt-3 text-[17px] text-white/75">{stat.label}</p>
-            </li>
-          ))}
-        </ul>
-      </section>
-
       <Testimonials />
 
-      <section aria-labelledby="process-title" className="bg-panel py-20 sm:py-28">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6">
-          <SectionHeading
-            id="process-title"
-            eyebrow="How a project runs"
-            title="From land to handover"
-            intro="Five stages, each with a clear end point, so you always know where your building stands."
-          />
-          <div className="relative mt-14">
-            <span
-              aria-hidden="true"
-              data-line="y"
-              className="absolute bottom-6 left-6 top-6 w-0.5 -translate-x-1/2 bg-gold lg:hidden"
-            />
-            <span
-              aria-hidden="true"
-              data-line="x"
-              className="absolute left-6 right-[calc((100%-8rem)/5-1.5rem)] top-6 hidden h-0.5 bg-gold lg:block"
-            />
-            <ol className="relative grid gap-10 lg:grid-cols-5 lg:gap-8">
-              {PROCESS.map((step, index) => (
-                <li key={step.title} data-reveal="" className="relative flex gap-5 lg:block">
-                  <span className="relative z-10 grid size-12 shrink-0 place-items-center rounded-full bg-navy font-display text-lg font-bold text-white ring-8 ring-panel">
-                    {String(index + 1).padStart(2, "0")}
-                  </span>
-                  <div className="lg:mt-6">
-                    <h3 className="font-display text-xl font-bold text-navy">{step.title}</h3>
-                    <p className="mt-2 text-[17px] leading-relaxed text-ink-soft">{step.text}</p>
-                    <span className="mt-4 inline-flex h-8 items-center rounded-full bg-sand px-3 text-sm font-semibold tabular-nums text-navy">
-                      {step.duration}
-                    </span>
-                  </div>
-                </li>
-              ))}
-            </ol>
-          </div>
-        </div>
-      </section>
+      <BlueprintProcess />
 
-      <section aria-labelledby="areas-title" className="overflow-hidden bg-navy py-14 text-white sm:py-20">
+      <section aria-labelledby="areas-title" className="overflow-hidden bg-gold-bright py-12 text-navy-deep sm:py-16">
         <div className="mx-auto max-w-7xl px-4 sm:px-6">
-          <p id="areas-title" className="text-sm font-semibold uppercase tracking-[0.14em] text-gold-bright">
+          <p id="areas-title" className="text-sm font-semibold uppercase tracking-[0.14em] text-navy-deep/70">
             Where we build
           </p>
         </div>
         <Marquee
           items={AREAS}
           duration={45}
-          className="mt-6"
+          className="mt-5"
           itemClassName="font-display text-4xl font-bold sm:text-6xl lg:text-7xl"
-          dotClassName="bg-gold-bright"
+          dotClassName="bg-navy-deep"
         />
       </section>
 

@@ -20,6 +20,18 @@ export type HomeScreenId = (typeof HOME_SCREENS)[number]["id"];
  */
 export function ScreenDots({ variant }: { variant: "header" | "rail" }) {
   const [active, setActive] = useState<string>(HOME_SCREENS[0].id);
+  const [pastScreens, setPastScreens] = useState(false);
+
+  // Once the last screen has scrolled away, the dots have nothing left to point at.
+  useEffect(() => {
+    const last = document.getElementById(HOME_SCREENS[HOME_SCREENS.length - 1].id);
+    if (!last) return;
+    const observer = new IntersectionObserver(([entry]) =>
+      setPastScreens(!entry.isIntersecting && entry.boundingClientRect.top < 0),
+    );
+    observer.observe(last);
+    return () => observer.disconnect();
+  }, []);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -42,11 +54,13 @@ export function ScreenDots({ variant }: { variant: "header" | "rail" }) {
   return (
     <nav
       aria-label="Page sections"
-      className={
+      aria-hidden={pastScreens || undefined}
+      inert={pastScreens}
+      className={`transition-opacity duration-500 ${pastScreens ? "opacity-0" : "opacity-100"} ${
         rail
           ? "fixed top-1/2 right-5 z-30 hidden -translate-y-1/2 flex-col gap-1 rounded-full border border-white/15 bg-navy-deep/55 px-1.5 py-2 backdrop-blur-md lg:flex"
           : "flex items-center"
-      }
+      }`}
     >
       {HOME_SCREENS.map((screen) => {
         const current = screen.id === active;

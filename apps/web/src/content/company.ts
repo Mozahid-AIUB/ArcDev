@@ -19,7 +19,7 @@ export const COMPANY_STATS: Stat[] = [
   { value: 9, label: "project categories" },
   { value: 2, label: "offices, Dhaka and Sylhet" },
   { value: 60, suffix: "K", label: "sq ft, largest single factory" },
-  { value: 2, label: "founding partners" },
+  { value: 18, label: "years designing and building" },
 ];
 
 export const PROCESS: { title: string; text: string; duration: string }[] = [
@@ -78,18 +78,30 @@ export const ABOUT = {
     { title: "Open sites", text: "Owners and investors are welcome to visit at any stage of construction." },
     { title: "One team", text: "Design, construction and after-sales stay with the same people." },
   ],
+  // From the 2026 company profile.
   leadership: [
-    {
-      role: "Co-Founder & COO",
-      name: "Deanna Alam",
-      bio: "Bachelor of Architecture, University of Asia Pacific. Previously with DWm4 Architects (2007) and Ranks Real Estate (2012) before co-founding Arc Development.",
-    },
     {
       role: "Managing Director",
       name: "Shihab Amin Mustafa",
-      bio: "Architect and urban designer, LEED Professional. Bachelor of Architecture, BRAC University. Fulbright Scholar (Harvard), F.URP (MIT), MAUD (Oxford Brookes).",
-      photo: "/images/team/shihab-amin-mustafa.webp",
+      bio: "Architect, urban designer and certified project manager. Fulbright Scholar (Harvard), F.URP (MIT), MA Urban Design (Oxford Brookes), B.Arch (BRAC University). In practice since 2008, including World Bank and DPDC projects.",
+      photo: "/images/team/shihab-amin-mustafa-hd.webp",
+      credentials: ["PMP", "LEED Green Associate", "IAB M-071", "RAJUK member"],
     },
+    {
+      role: "Co-Founder & Principal Architect",
+      name: "Deanna Alam",
+      bio: "Architect and urban planner. MSc Urban Planning from Oxford Brookes University and B.Arch (2008). Principal architect of Arctic Architects & Construction since 2013, leading residential, commercial and interior work.",
+      photo: "/images/team/deanna-alam.webp",
+      credentials: ["IAB member", "RAJUK A-165", "Registered since 2010"],
+    },
+  ],
+  /** Architects on the technical team, from the 2026 company profile. */
+  team: [
+    { name: "Towfiqur Rahman", role: "Senior Architect", photo: "/images/team/towfiqur-rahman.webp" },
+    { name: "Syed Mahmud Hossain", role: "Architect", photo: "/images/team/syed-mahmud-hossain.webp" },
+    { name: "Mahedi Hasan Kanon", role: "Architect", photo: "/images/team/mahedi-hasan-kanon.webp" },
+    { name: "Md. Fazlul Hoque Tushar", role: "Architect", photo: "/images/team/fazlul-hoque-tushar.webp" },
+    { name: "S. A. Muktadir Shuvo", role: "Architect", photo: "/images/team/muktadir-shuvo.webp" },
   ],
   milestones: [
     { year: "2007", text: "Founding partners begin their careers in architecture and real estate in Dhaka" },
