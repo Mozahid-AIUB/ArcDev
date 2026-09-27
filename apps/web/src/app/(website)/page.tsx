@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { HeroSlideshow } from "@/components/home/hero-slideshow";
+import type { ReactNode } from "react";
+import { FullScreen } from "@/components/home/full-screen";
 import { PartnerFlow } from "@/components/home/partner-flow";
 import { ProjectCarousel } from "@/components/home/project-carousel";
+import { ScreenDots } from "@/components/home/screen-dots";
 import { ServiceFlipGrid } from "@/components/home/service-flip-grid";
 import { Marquee } from "@/components/motion/marquee";
 import { SplitWords } from "@/components/motion/split-words";
@@ -11,7 +13,7 @@ import { buttonStyles } from "@/components/ui/button";
 import { FactList } from "@/components/ui/fact-list";
 import { FaqList } from "@/components/ui/faq-list";
 import { SectionHeading } from "@/components/ui/section-heading";
-import { ArrowRightIcon, ChatIcon, PhoneIcon } from "@/components/website/icons";
+import { ArrowRightIcon, ChatIcon, MailIcon, PhoneIcon, PinIcon } from "@/components/website/icons";
 import { JsonLd } from "@/components/website/json-ld";
 import { AREAS, COMPANY_FACTS, COMPANY_STATS, HOME_FAQS, PROCESS } from "@/content/company";
 import { getProjects } from "@/lib/data";
@@ -28,6 +30,19 @@ function formatStat(value: number, decimals = 0) {
   return value.toLocaleString("en-US", { minimumFractionDigits: decimals, maximumFractionDigits: decimals });
 }
 
+function ScreenTitle({ id, children, tone = "light" }: { id: string; children: string; tone?: "light" | "dark" }) {
+  return (
+    <h2
+      id={id}
+      className={`px-4 text-center font-display text-2xl font-bold tracking-[0.04em] uppercase sm:text-4xl lg:text-[2.6rem] ${
+        tone === "dark" ? "text-white" : "text-navy"
+      }`}
+    >
+      <SplitWords text={children} />
+    </h2>
+  );
+}
+
 export default async function HomePage() {
   const projects = await getProjects();
   const ongoing = projects.filter((project) => project.status === "ongoing");
@@ -37,33 +52,127 @@ export default async function HomePage() {
   return (
     <>
       <JsonLd data={organizationJsonLd()} />
+      <h1 className="sr-only">
+        {SITE.name}: architects, engineers and construction managers in Dhaka. Construction funding, joint land
+        development, interior and engineering design, project management and managed investment.
+      </h1>
+      <ScreenDots variant="rail" />
 
-      {/* 1. Hero */}
-      <HeroSlideshow>
-        <div className="max-w-3xl">
-          <p className="text-sm font-semibold uppercase tracking-[0.16em] text-gold-bright">
-            Architects, Engineers & Construction Managers · Dhaka
+      {/* The client's sketch: five full screens, in this order. */}
+      <FullScreen
+        id="ongoing"
+        label="Ongoing projects"
+        tone="dark"
+        next={{ id: "offer", label: "What we offer" }}
+        className="bg-navy-deep"
+      >
+        <h2 id="ongoing-title" className="sr-only">
+          Ongoing projects
+        </h2>
+        <ProjectCarousel projects={ongoing} label="Ongoing projects" tone="dark" tall className="" />
+      </FullScreen>
+
+      <FullScreen
+        id="offer"
+        label="What we offer"
+        next={{ id: "completed", label: "Completed projects" }}
+        className="bg-sand"
+      >
+        <div className="mx-auto w-full max-w-7xl px-4 sm:px-6">
+          <ScreenTitle id="offer-title">What we offer</ScreenTitle>
+          <ServiceFlipGrid />
+        </div>
+      </FullScreen>
+
+      <FullScreen
+        id="completed"
+        label="Completed projects"
+        tone="dark"
+        next={{ id: "upcoming", label: "Upcoming projects" }}
+        className="bg-navy-deep"
+      >
+        <ScreenTitle id="completed-title" tone="dark">
+          Completed projects
+        </ScreenTitle>
+        <ProjectCarousel projects={completed} label="Completed projects" tone="dark" />
+      </FullScreen>
+
+      <FullScreen
+        id="upcoming"
+        label="Upcoming projects"
+        next={{ id: "contact", label: "Contact us" }}
+        className="bg-ground"
+      >
+        <ScreenTitle id="upcoming-title">Upcoming projects</ScreenTitle>
+        <ProjectCarousel projects={upcoming} label="Upcoming projects" />
+      </FullScreen>
+
+      <FullScreen id="contact" label="Contact us" tone="dark" className="isolate bg-navy-deep text-white">
+        <div aria-hidden="true" className="absolute inset-0 -z-20">
+          <Image
+            src="/images/projects/anlima-purbachal/entrance-night-01.webp"
+            alt=""
+            fill
+            sizes="100vw"
+            className="object-cover opacity-35"
+          />
+        </div>
+        <div aria-hidden="true" className="absolute inset-0 -z-10 bg-linear-to-b from-navy-deep via-navy-deep/85 to-navy-deep" />
+
+        <div className="mx-auto w-full max-w-6xl px-4 sm:px-6">
+          <ScreenTitle id="contact-title" tone="dark">
+            Contact us
+          </ScreenTitle>
+          <p data-reveal="" className="mx-auto mt-3 max-w-xl text-center text-base text-white/75 sm:text-lg">
+            Tell us about your land, your home or your plan, and ArcDev will call you back.
           </p>
-          <h1 className="mt-5 text-4xl font-bold leading-[1.05] sm:text-6xl lg:text-7xl">
-            <SplitWords text="From land to handover, one developer." />
-          </h1>
-          <p className="mt-6 max-w-2xl text-lg leading-relaxed text-white/80 sm:text-xl">
-            ArcDev funds construction, develops land with its owners, designs and engineers the building, manages the
-            work, and brings investors along.
-          </p>
-          <div className="mt-9 flex flex-wrap gap-3">
+
+          <ul className="mt-8 grid gap-3 sm:grid-cols-3 sm:gap-4">
+            <ContactCard href={`tel:${SITE.phone}`} icon={<PhoneIcon />} label="Call us" value={SITE.phoneDisplay} />
+            <ContactCard
+              href={whatsappUrl}
+              external
+              icon={<ChatIcon />}
+              label="WhatsApp"
+              value={SITE.phoneDisplay}
+            />
+            <ContactCard href={`mailto:${SITE.email}`} icon={<MailIcon />} label="Email" value={SITE.email} />
+          </ul>
+
+          <ul className="mt-3 grid gap-3 sm:mt-4 sm:grid-cols-2 sm:gap-4">
+            <li data-reveal="" className="flex gap-3 rounded-xl border border-white/15 bg-white/5 p-4 backdrop-blur-sm sm:p-5">
+              <PinIcon className="mt-0.5 size-5 shrink-0 text-gold-bright" />
+              <p>
+                <span className="block text-xs font-semibold tracking-[0.16em] text-gold-bright uppercase">
+                  Dhaka office
+                </span>
+                <span className="mt-1 block text-[15px] leading-snug text-white/85">{SITE.address}</span>
+              </p>
+            </li>
+            <li data-reveal="" className="flex gap-3 rounded-xl border border-white/15 bg-white/5 p-4 backdrop-blur-sm sm:p-5">
+              <PinIcon className="mt-0.5 size-5 shrink-0 text-gold-bright" />
+              <p>
+                <span className="block text-xs font-semibold tracking-[0.16em] text-gold-bright uppercase">
+                  Sylhet office
+                </span>
+                <span className="mt-1 block text-[15px] leading-snug text-white/85">{SITE.addressSylhet}</span>
+              </p>
+            </li>
+          </ul>
+
+          <div data-reveal="" className="mt-7 flex flex-col justify-center gap-3 sm:flex-row">
             <Link href="/enquiry" className={buttonStyles.primary}>
               Send an enquiry
               <ArrowRightIcon />
             </Link>
-            <Link href="/projects" className={buttonStyles.outlineOnDark}>
-              See our projects
+            <Link href="/projects" className={`${buttonStyles.outlineOnDark} max-sm:hidden`}>
+              See all projects
             </Link>
           </div>
         </div>
-      </HeroSlideshow>
+      </FullScreen>
 
-      {/* 2. Partners */}
+      {/* More about ArcDev, below the client's five screens. */}
       <section aria-labelledby="partners-title" className="bg-ground py-20 sm:py-28">
         <div className="mx-auto max-w-7xl px-4 sm:px-6">
           <div className="grid gap-12 lg:grid-cols-[1.2fr_1fr] lg:gap-20">
@@ -93,20 +202,6 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* 3. Services */}
-      <section aria-labelledby="services-title" className="bg-sand py-20 sm:py-28">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6">
-          <SectionHeading
-            id="services-title"
-            eyebrow="What we offer"
-            title="Six services, one team"
-            intro="Pick the one that fits your land, your flat or your plan. Each has its own page with the steps, what's included and a request form."
-          />
-          <ServiceFlipGrid />
-        </div>
-      </section>
-
-      {/* 4. Stats */}
       <section aria-label="ArcDev in numbers" className="bg-navy-deep py-16 text-white sm:py-20">
         <ul className="mx-auto grid max-w-7xl grid-cols-2 gap-x-6 gap-y-10 px-4 sm:px-6 lg:grid-cols-5 lg:gap-0">
           {COMPANY_STATS.map((stat, index) => (
@@ -130,51 +225,6 @@ export default async function HomePage() {
         </ul>
       </section>
 
-      {/* 5. Projects, one status per section, each swiped one project at a time */}
-      <section aria-labelledby="ongoing-title" className="overflow-hidden bg-ground py-20 sm:py-28">
-        <SectionHeading
-          id="ongoing-title"
-          align="center"
-          eyebrow="Under construction"
-          title="Ongoing projects"
-          intro="Buildings ArcDev is designing and building right now."
-          className="px-4"
-        />
-        <ProjectCarousel projects={ongoing} label="Ongoing projects" />
-      </section>
-
-      <section aria-labelledby="completed-title" className="overflow-hidden bg-navy-deep py-20 sm:py-28">
-        <SectionHeading
-          id="completed-title"
-          align="center"
-          tone="dark"
-          eyebrow="Handed over"
-          title="Completed projects"
-          intro="Homes, offices, factories and interiors, finished and in use."
-          className="px-4"
-        />
-        <ProjectCarousel projects={completed} label="Completed projects" tone="dark" />
-      </section>
-
-      <section aria-labelledby="upcoming-title" className="overflow-hidden bg-sand py-20 sm:py-28">
-        <SectionHeading
-          id="upcoming-title"
-          align="center"
-          eyebrow="Coming next"
-          title="Upcoming projects"
-          intro="Developments in planning, from a Sylhet condominium to a 46-acre township."
-          className="px-4"
-        />
-        <ProjectCarousel projects={upcoming} label="Upcoming projects" />
-        <div className="mt-10 flex justify-center px-4">
-          <Link href="/projects" className={buttonStyles.outline}>
-            See all projects
-            <ArrowRightIcon />
-          </Link>
-        </div>
-      </section>
-
-      {/* 6. Process */}
       <section aria-labelledby="process-title" className="bg-panel py-20 sm:py-28">
         <div className="mx-auto max-w-7xl px-4 sm:px-6">
           <SectionHeading
@@ -192,7 +242,7 @@ export default async function HomePage() {
             <span
               aria-hidden="true"
               data-line="x"
-              className="absolute left-6 right-[calc((100%_-_8rem)/5_-_1.5rem)] top-6 hidden h-0.5 bg-gold lg:block"
+              className="absolute left-6 right-[calc((100%-8rem)/5-1.5rem)] top-6 hidden h-0.5 bg-gold lg:block"
             />
             <ol className="relative grid gap-10 lg:grid-cols-5 lg:gap-8">
               {PROCESS.map((step, index) => (
@@ -214,7 +264,6 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* 7. Areas */}
       <section aria-labelledby="areas-title" className="overflow-hidden bg-navy py-14 text-white sm:py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6">
           <p id="areas-title" className="text-sm font-semibold uppercase tracking-[0.14em] text-gold-bright">
@@ -230,7 +279,6 @@ export default async function HomePage() {
         />
       </section>
 
-      {/* 8. FAQ */}
       <section aria-labelledby="faq-title" className="bg-ground py-20 sm:py-28">
         <div className="mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-[2fr_3fr] lg:gap-20">
           <div className="lg:sticky lg:top-28 lg:self-start">
@@ -252,37 +300,38 @@ export default async function HomePage() {
           <FaqList items={HOME_FAQS} />
         </div>
       </section>
-
-      {/* 9. Closing call to action */}
-      <section aria-labelledby="cta-title" className="relative isolate overflow-hidden bg-navy-deep text-white">
-        <div data-parallax="8" className="absolute inset-x-0 top-[-10%] -z-20 h-[120%]">
-          <Image src="/images/projects/anlima-purbachal/entrance-night-01.webp" alt="" fill sizes="100vw" className="object-cover" />
-        </div>
-        <div aria-hidden="true" className="absolute inset-0 -z-10 bg-navy-deep/80" />
-        <div className="mx-auto max-w-4xl px-4 py-24 text-center sm:px-6 sm:py-32">
-          <span data-reveal="fade" aria-hidden="true" className="mx-auto block h-0.5 w-10 bg-gold-bright" />
-          <h2 id="cta-title" className="mt-6 text-3xl font-bold leading-[1.1] sm:text-5xl">
-            <SplitWords text="Have land, a flat in mind or money to invest?" />
-          </h2>
-          <p data-reveal="" className="mx-auto mt-5 max-w-2xl text-lg leading-relaxed text-white/80 sm:text-xl">
-            Tell us about your plot, your home or your plan, and ArcDev will call you back.
-          </p>
-          <div data-reveal="" className="mt-9 flex flex-wrap justify-center gap-3">
-            <Link href="/enquiry" className={buttonStyles.primary}>
-              Send an enquiry
-              <ArrowRightIcon />
-            </Link>
-            <a href={`tel:${SITE.phone}`} className={buttonStyles.outlineOnDark}>
-              <PhoneIcon />
-              Call {SITE.phoneDisplay}
-            </a>
-            <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className={buttonStyles.outlineOnDark}>
-              <ChatIcon />
-              WhatsApp
-            </a>
-          </div>
-        </div>
-      </section>
     </>
+  );
+}
+
+function ContactCard({
+  href,
+  icon,
+  label,
+  value,
+  external = false,
+}: {
+  href: string;
+  icon: ReactNode;
+  label: string;
+  value: string;
+  external?: boolean;
+}) {
+  return (
+    <li data-reveal="">
+      <a
+        href={href}
+        {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+        className="group flex h-full items-center gap-4 rounded-xl border border-white/15 bg-white/5 p-4 backdrop-blur-sm transition-colors duration-300 hover:border-gold-bright/60 hover:bg-white/10 sm:p-5"
+      >
+        <span className="grid size-11 shrink-0 place-items-center rounded-full bg-gold-bright text-navy-deep transition-transform duration-300 group-hover:scale-110">
+          {icon}
+        </span>
+        <span className="min-w-0">
+          <span className="block text-xs font-semibold tracking-[0.16em] text-gold-bright uppercase">{label}</span>
+          <span className="mt-0.5 block truncate font-semibold text-white">{value}</span>
+        </span>
+      </a>
+    </li>
   );
 }

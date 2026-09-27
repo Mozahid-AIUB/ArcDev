@@ -98,7 +98,7 @@ export function ServiceFlipGrid() {
   return (
     <ul
       ref={listRef}
-      className="mt-12 grid auto-rows-[92px] grid-cols-2 gap-3 sm:auto-rows-[124px] sm:gap-4 lg:auto-rows-[118px] lg:grid-cols-3 lg:gap-5 xl:auto-rows-[128px]"
+      className="mt-6 grid auto-rows-[max(64px,calc((100svh-21rem)/7))] grid-cols-2 gap-3 sm:mt-8 sm:gap-4 lg:auto-rows-[max(72px,calc((100svh-24.5rem)/5))] lg:grid-cols-3 lg:gap-5"
     >
       {SERVICES.map((service, index) => (
         <li key={service.slug} data-reveal="scale" className={PLACEMENT[index]}>

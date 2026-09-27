@@ -39,10 +39,15 @@ export function ProjectCarousel({
   projects,
   label,
   tone = "light",
+  tall = false,
+  className = "mt-6 sm:mt-8",
 }: {
   projects: readonly Project[];
   label: string;
   tone?: "light" | "dark";
+  /** The first screen has no heading above the card, so the card can take more of the height. */
+  tall?: boolean;
+  className?: string;
 }) {
   const trackRef = useRef<HTMLUListElement>(null);
   const [active, setActive] = useState(0);
@@ -157,7 +162,7 @@ export function ProjectCarousel({
       role="region"
       aria-roledescription="carousel"
       aria-label={label}
-      className="relative mt-10 sm:mt-12"
+      className={`relative ${className}`}
       onKeyDown={(event) => {
         if (event.key === "ArrowRight") step(1);
         if (event.key === "ArrowLeft") step(-1);
@@ -190,6 +195,7 @@ export function ProjectCarousel({
               index={index}
               count={count}
               isActive={index === active}
+              tall={tall}
               onFocus={() => goTo(index)}
             />
           </li>
@@ -205,7 +211,7 @@ export function ProjectCarousel({
             <ChevronRightIcon className="size-5" />
           </button>
 
-          <div className="mt-7 flex items-center justify-center gap-4 px-4">
+          <div className="mt-4 flex items-center justify-center gap-4 px-4 sm:mt-5">
             {count <= MAX_DOTS ? (
               <div className="flex items-center gap-2">
                 {projects.map((project, index) => {
@@ -271,12 +277,14 @@ function Slide({
   index,
   count,
   isActive,
+  tall,
   onFocus,
 }: {
   project: Project;
   index: number;
   count: number;
   isActive: boolean;
+  tall: boolean;
   onFocus: () => void;
 }) {
   const cover = project.images[0];
@@ -289,9 +297,11 @@ function Slide({
       aria-label={`${project.name}, ${project.location}. More details`}
       onFocus={onFocus}
       draggable={false}
-      className={`group relative block aspect-3/4 overflow-hidden rounded-2xl bg-navy-deep shadow-2xl shadow-navy-deep/30 transition-[transform,opacity] duration-700 ease-out select-none sm:aspect-4/3 lg:aspect-21/10 ${
-        isActive ? "scale-100 opacity-100" : "scale-[0.92] opacity-45"
-      }`}
+      className={`group relative block overflow-hidden rounded-2xl bg-navy-deep shadow-2xl shadow-navy-deep/30 transition-[transform,opacity] duration-700 ease-out select-none ${
+        tall
+          ? "h-[clamp(380px,calc(100svh-13.5rem),820px)] lg:h-[clamp(420px,calc(100svh-15.25rem),820px)]"
+          : "h-[clamp(340px,calc(100svh-17rem),760px)] lg:h-[clamp(380px,calc(100svh-20rem),760px)]"
+      } ${isActive ? "scale-100 opacity-100" : "scale-[0.92] opacity-45"}`}
     >
       {cover && (
         <Image

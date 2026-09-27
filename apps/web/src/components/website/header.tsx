@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { SERVICES } from "@arcdev/shared";
+import { ScreenDots } from "@/components/home/screen-dots";
 import { buttonStyles } from "@/components/ui/button";
 import { ChevronDownIcon, CloseIcon, MenuIcon, ServiceIcon } from "./icons";
 import { SiteLogo } from "./site-logo";
@@ -54,7 +55,37 @@ export function Header() {
     <header
       className={`sticky top-0 z-40 bg-navy text-white transition-shadow duration-300 ${scrolled ? "shadow-lg shadow-navy-deep/30" : ""}`}
     >
-      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-6 px-4 sm:px-6 lg:h-20">
+      {/* Phones and tablets: menu left, logo centred, section dots (home) or Enquire right. */}
+      <div className="mx-auto grid h-16 max-w-7xl grid-cols-[1fr_auto_1fr] items-center px-3 sm:px-6 lg:hidden">
+        <button
+          type="button"
+          onClick={() => setMenuOpen((open) => !open)}
+          aria-expanded={menuOpen}
+          aria-controls="mobile-menu"
+          aria-label={menuOpen ? "Close menu" : "Open menu"}
+          className="grid size-11 place-items-center justify-self-start rounded-md hover:bg-white/10"
+        >
+          {menuOpen ? <CloseIcon /> : <MenuIcon />}
+        </button>
+        <Link href="/" onClick={closeAll} className="flex h-11 items-center px-1">
+          <SiteLogo />
+        </Link>
+        <div className="justify-self-end">
+          {pathname === "/" ? (
+            <ScreenDots variant="header" />
+          ) : (
+            <Link
+              href="/enquiry"
+              onClick={closeAll}
+              className="inline-flex h-10 items-center rounded-md bg-gold-bright px-3 text-sm font-semibold text-navy"
+            >
+              Enquire
+            </Link>
+          )}
+        </div>
+      </div>
+
+      <div className="mx-auto hidden h-20 max-w-7xl items-center justify-between gap-6 px-6 lg:flex">
         <Link href="/" onClick={closeAll} className="-ml-1 flex h-11 items-center px-1">
           <SiteLogo />
         </Link>
@@ -113,21 +144,9 @@ export function Header() {
           </ul>
         </nav>
 
-        <div className="flex items-center gap-2">
-          <Link href="/enquiry" onClick={closeAll} className={`${buttonStyles.primary} hidden sm:inline-flex`}>
-            Enquire
-          </Link>
-          <button
-            type="button"
-            onClick={() => setMenuOpen((open) => !open)}
-            aria-expanded={menuOpen}
-            aria-controls="mobile-menu"
-            aria-label={menuOpen ? "Close menu" : "Open menu"}
-            className="-mr-2 grid size-11 place-items-center rounded-md hover:bg-white/10 lg:hidden"
-          >
-            {menuOpen ? <CloseIcon /> : <MenuIcon />}
-          </button>
-        </div>
+        <Link href="/enquiry" onClick={closeAll} className={buttonStyles.primary}>
+          Enquire
+        </Link>
       </div>
 
       {menuOpen && (

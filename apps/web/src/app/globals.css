@@ -146,18 +146,6 @@ html[data-motion] [data-line="y"] {
   animation: flow-y 0.9s linear infinite;
 }
 
-/* Slow zoom on the active hero photo. */
-@keyframes ken-burns {
-  from {
-    transform: scale(1.12);
-  }
-  to {
-    transform: scale(1);
-  }
-}
-.ken-burns {
-  animation: ken-burns 9s ease-out forwards;
-}
 
 /* Fills a bar over --fill-duration; used by the hero slide tabs. */
 @keyframes fill-x {
@@ -227,6 +215,20 @@ html[data-motion] [data-line="y"] {
   -webkit-text-stroke: 1px currentColor;
 }
 
+/* Homepage screens settle into place under the sticky header when a scroll ends near one. */
+html:has([data-screen]) {
+  scroll-snap-type: y proximity;
+  scroll-padding-top: 4rem;
+}
+@media (min-width: 64rem) {
+  html:has([data-screen]) {
+    scroll-padding-top: 5rem;
+  }
+}
+[data-screen] {
+  scroll-snap-align: start;
+}
+
 /* Swipe tracks scroll by touch, arrows and dots; the native scrollbar would only add noise. */
 .no-scrollbar {
   scrollbar-width: none;
@@ -261,7 +263,6 @@ html[data-motion] [data-line="y"] {
   .flow-x,
   .flow-x-reverse,
   .flow-y,
-  .ken-burns,
   .slow-zoom {
     animation: none !important;
   }
