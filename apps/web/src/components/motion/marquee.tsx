@@ -7,8 +7,6 @@ interface MarqueeProps {
   className?: string;
   itemClassName?: string;
   dotClassName?: string;
-  /** Scroll left to right instead. */
-  reverse?: boolean;
 }
 
 /** An endless horizontal band of words. Pauses on hover and stops for reduced motion. */
@@ -18,7 +16,6 @@ export function Marquee({
   className = "",
   itemClassName = "",
   dotClassName = "bg-gold",
-  reverse = false,
 }: MarqueeProps) {
   const row = (copy: boolean) => (
     <ul className="flex shrink-0 items-center" aria-hidden={copy || undefined}>
@@ -33,10 +30,7 @@ export function Marquee({
 
   return (
     <div className={`marquee overflow-hidden ${className}`}>
-      <div
-        className="marquee-track flex w-max"
-        style={{ "--marquee-duration": `${duration}s`, animationDirection: reverse ? "reverse" : undefined } as CSSProperties}
-      >
+      <div className="marquee-track flex w-max" style={{ "--marquee-duration": `${duration}s` } as CSSProperties}>
         {row(false)}
         {row(true)}
       </div>

@@ -1,8 +1,8 @@
 import Image from "next/image";
-import { Marquee } from "@/components/motion/marquee";
+import type { CSSProperties } from "react";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { AwardIcon, BuildingIcon, DocumentIcon, QuoteIcon, ShieldCheckIcon } from "@/components/website/icons";
-import { CLIENTS, CREDENTIALS, TESTIMONIALS, type CredentialIcon } from "@/content/trust";
+import { CLIENTS, CREDENTIALS, MORE_CLIENTS, TESTIMONIALS, type CredentialIcon } from "@/content/trust";
 
 const ICONS: Record<CredentialIcon, typeof ShieldCheckIcon> = {
   shield: ShieldCheckIcon,
@@ -13,10 +13,38 @@ const ICONS: Record<CredentialIcon, typeof ShieldCheckIcon> = {
 
 const EDGE_FADE = "[mask-image:linear-gradient(to_right,transparent,black_12%,black_88%,transparent)]";
 
-/** "Trusted by": two bands of client names drifting in opposite directions. */
-export function TrustedBy() {
-  const half = Math.ceil(CLIENTS.length / 2);
+/** Sizes each logo by area, so wide wordmarks and square seals read as the same visual weight. */
+function logoSize(width: number, height: number) {
+  const aspect = width / height;
+  const h = Math.min(62, Math.max(30, Math.sqrt(5600 / aspect)));
+  return { width: Math.round(h * aspect), height: Math.round(h) };
+}
 
+function LogoRow({ hidden = false }: { hidden?: boolean }) {
+  return (
+    <ul className="flex shrink-0 items-center" aria-hidden={hidden || undefined}>
+      {CLIENTS.map((client) => {
+        const size = logoSize(client.logo.width, client.logo.height);
+        return (
+          <li key={client.name} className="flex h-24 shrink-0 items-center px-7 sm:h-28 sm:px-12">
+            <Image
+              src={client.logo.src}
+              alt={hidden ? "" : client.name}
+              title={client.name}
+              width={size.width}
+              height={size.height}
+              style={{ width: size.width, height: size.height }}
+              className="max-w-none object-contain opacity-75 grayscale transition duration-500 hover:scale-105 hover:opacity-100 hover:grayscale-0 max-sm:scale-90"
+            />
+          </li>
+        );
+      })}
+    </ul>
+  );
+}
+
+/** "Trusted by": past clients' logos drifting past, in grey until hovered. */
+export function TrustedBy() {
   return (
     <section aria-labelledby="trusted-title" className="overflow-hidden bg-panel py-16 sm:py-24">
       <SectionHeading
@@ -27,21 +55,17 @@ export function TrustedBy() {
         intro="Banks, developers, factories, universities and hospitals that ArcDev and its sister firm have designed and built for."
         className="px-4"
       />
-      <div data-reveal="fade" className={`mt-10 space-y-3 sm:mt-14 sm:space-y-5 ${EDGE_FADE}`}>
-        <Marquee
-          items={CLIENTS.slice(0, half)}
-          duration={38}
-          itemClassName="font-display text-2xl font-bold tracking-tight text-navy/85 sm:text-4xl"
-          dotClassName="bg-gold"
-        />
-        <Marquee
-          items={CLIENTS.slice(half)}
-          duration={44}
-          reverse
-          itemClassName="font-display text-2xl font-bold tracking-tight text-navy/45 sm:text-4xl"
-          dotClassName="bg-gold-bright"
-        />
+      <div data-reveal="fade" className={`mt-8 border-y border-line sm:mt-12 ${EDGE_FADE}`}>
+        <div className="marquee overflow-hidden">
+          <div className="marquee-track flex w-max" style={{ "--marquee-duration": "45s" } as CSSProperties}>
+            <LogoRow />
+            <LogoRow hidden />
+          </div>
+        </div>
       </div>
+      <p data-reveal="" className="mt-6 px-4 text-center text-sm text-ink-soft">
+        Also {MORE_CLIENTS.join(", ")} and many more.
+      </p>
     </section>
   );
 }
