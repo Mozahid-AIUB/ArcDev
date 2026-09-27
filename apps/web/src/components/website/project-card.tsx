@@ -107,6 +107,9 @@ export function projectKeyFacts(project: Project): string[] {
   if (project.units !== undefined)
     facts.push(`${project.units} ${project.kind === "commercial" || project.kind === "industrial" ? "floors" : "units"}`);
   if (project.landKatha !== undefined) facts.push(`${project.landKatha} katha`);
+  if (project.slabsCast !== undefined && project.storeys !== undefined) {
+    facts.push(`${project.slabsCast} of ${project.storeys} slabs cast`);
+  }
   return facts;
 }
 

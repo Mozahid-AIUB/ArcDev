@@ -486,7 +486,11 @@ export const PROJECTS: Project[] = [
       "Tauri Foundation's new 9-storey headquarters at Doyal Housing Society, Bosila spans 28,480 square feet, designed and built by ArcDev end to end — design, drawings, supervision and handover. Construction began in September 2024; 8 storeys of slab casting are complete.",
     storeys: 9,
     flatSizesSqft: [28480],
-    progress: 65,
+    slabsCast: 8,
+    updates: [
+      { date: "Company profile, 2026", title: "Slabs cast on 8 of 9 storeys" },
+      { date: "September 2024", title: "Construction began" },
+    ],
     amenities: ["Full design-to-handover delivery", "Brick and cast-concrete facade", "Ground-floor lobby and signage wall"],
     images: [
       "/images/projects/tauri-foundation/exterior-01-hd.webp",

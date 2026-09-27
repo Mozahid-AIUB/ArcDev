@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Project } from "@arcdev/shared";
 import { LightboxGallery } from "@/components/gallery/lightbox";
+import { ConstructionStatus } from "@/components/projects/construction-status";
 import { buttonStyles } from "@/components/ui/button";
 import { FactList } from "@/components/ui/fact-list";
 import { SectionHeading } from "@/components/ui/section-heading";
@@ -212,6 +213,8 @@ export default async function ProjectPage({ params }: PageProps<"/projects/[slug
           </aside>
         </div>
       </section>
+
+      <ConstructionStatus project={project} />
 
       {project.amenities && project.amenities.length > 0 && (
         <section aria-labelledby="amenities-heading" className="bg-sand py-20 sm:py-28">

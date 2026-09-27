@@ -27,6 +27,8 @@ export interface Project {
   handover?: string;
   /** Construction progress, 0–100. Ongoing projects only. */
   progress?: number;
+  /** Floor slabs cast so far, out of `storeys`. Ongoing projects only. */
+  slabsCast?: number;
   amenities?: string[];
   /** Construction milestones, newest first. */
   updates?: ProjectUpdate[];

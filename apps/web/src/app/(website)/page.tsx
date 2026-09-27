@@ -7,6 +7,7 @@ import { FullScreen } from "@/components/home/full-screen";
 import { LandAssessmentForm } from "@/components/home/land-assessment-form";
 import { Leadership } from "@/components/home/leadership";
 import { PartnerFlow } from "@/components/home/partner-flow";
+import { ProjectMap } from "@/components/home/project-map";
 import { ProjectCarousel } from "@/components/home/project-carousel";
 import { ScreenDots } from "@/components/home/screen-dots";
 import { ServiceFlipGrid } from "@/components/home/service-flip-grid";
@@ -236,24 +237,21 @@ export default async function HomePage() {
         </div>
       </section>
 
+      <ProjectMap projects={projects} />
+
       <Testimonials />
 
       <BlueprintProcess />
 
-      <section aria-labelledby="areas-title" className="overflow-hidden bg-gold-bright py-12 text-navy-deep sm:py-16">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6">
-          <p id="areas-title" className="text-sm font-semibold uppercase tracking-[0.14em] text-navy-deep/70">
-            Where we build
-          </p>
-        </div>
+      {/* Neighbourhood names as a decorative band; the map above carries the same information. */}
+      <div aria-hidden="true" className="overflow-hidden bg-gold-bright py-10 text-navy-deep sm:py-14">
         <Marquee
           items={AREAS}
           duration={45}
-          className="mt-5"
           itemClassName="font-display text-4xl font-bold sm:text-6xl lg:text-7xl"
           dotClassName="bg-navy-deep"
         />
-      </section>
+      </div>
 
       <section aria-labelledby="faq-title" className="bg-ground py-20 sm:py-28">
         <div className="mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-[2fr_3fr] lg:gap-20">
