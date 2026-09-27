@@ -41,8 +41,8 @@ export const PROJECTS: Project[] = [
     images: [
       "/images/projects/joynal-garden/exterior-01.webp",
       "/images/projects/joynal-garden/entrance-01.webp",
-      "/images/projects/joynal-garden/exterior-02.webp",
-      "/images/projects/joynal-garden/rooftop-01.webp",
+      "/images/projects/joynal-garden/exterior-02-hd.webp",
+      "/images/projects/joynal-garden/rooftop-01-hd.webp",
     ],
   },
   {
@@ -489,8 +489,8 @@ export const PROJECTS: Project[] = [
     progress: 65,
     amenities: ["Full design-to-handover delivery", "Brick and cast-concrete facade", "Ground-floor lobby and signage wall"],
     images: [
-      "/images/projects/tauri-foundation/exterior-01.webp",
-      "/images/projects/tauri-foundation/aerial-context-01.webp",
+      "/images/projects/tauri-foundation/exterior-01-hd.webp",
+      "/images/projects/tauri-foundation/aerial-context-01-hd.webp",
     ],
   },
   {
@@ -506,7 +506,7 @@ export const PROJECTS: Project[] = [
     units: 120,
     handover: "December 2030",
     amenities: ["120 apartments across landscaped towers", "Rooftop gardens", "Gated entrance with landscaped drive"],
-    images: ["/images/projects/mount-adora-sylhet/exterior-01.webp"],
+    images: ["/images/projects/mount-adora-sylhet/exterior-01-hd.webp"],
   },
   {
     slug: "prottyasha-gated-city",

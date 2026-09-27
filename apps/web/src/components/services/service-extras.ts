@@ -2,7 +2,7 @@ import type { Project, ServiceSlug } from "@arcdev/shared";
 
 /** A second photo for the "What's included" section, different from the page header photo. */
 export const SERVICE_SECOND_PHOTO: Record<ServiceSlug, { src: string; alt: string }> = {
-  fund: { src: "/images/projects/joynal-garden/rooftop-01.webp", alt: "Joynal Garden's rooftop terrace" },
+  fund: { src: "/images/projects/joynal-garden/rooftop-01-hd.webp", alt: "Joynal Garden's rooftop terrace" },
   landshare: { src: "/images/projects/runner-apartment-complex/exterior-02.webp", alt: "Runner Apartment Complex exterior" },
   interior: { src: "/images/projects/royal-group-guest-house/kitchen-01.webp", alt: "A finished kitchen and breakfast bar" },
   engineering: { src: "/images/projects/desco-chq-nikunjo/render-aerial-01.webp", alt: "Desco CHQ aerial design render" },
