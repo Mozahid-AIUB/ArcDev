@@ -42,7 +42,7 @@ export default function AboutPage() {
         eyebrow={<p className="text-sm font-semibold uppercase tracking-[0.14em] text-gold-bright">About ArcDev</p>}
         title="Building Dhaka, one plot at a time"
         intro="Architects, engineers and construction managers delivering commercial towers, homes, factories and interiors across Dhaka and Sylhet."
-        image="/images/projects/imperial-commercial-center/exterior-01.webp"
+        image="/images/projects/imperial-commercial-center/exterior-01-hd.webp"
       />
 
       {/* Story */}

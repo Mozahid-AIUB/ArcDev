@@ -18,11 +18,11 @@ export const PROJECTS: Project[] = [
     flatSizesSqft: [11159],
     amenities: ["Two basement parking levels", "Rooftop garden", "Helipad", "Full glass facade", "Passenger and service lifts"],
     images: [
-      "/images/projects/imperial-commercial-center/exterior-01.webp",
-      "/images/projects/imperial-commercial-center/exterior-02.webp",
-      "/images/projects/imperial-commercial-center/street-view-01.webp",
-      "/images/projects/imperial-commercial-center/facade-detail-01.webp",
-      "/images/projects/imperial-commercial-center/aerial-01.webp",
+      "/images/projects/imperial-commercial-center/exterior-01-hd.webp",
+      "/images/projects/imperial-commercial-center/exterior-02-hd.webp",
+      "/images/projects/imperial-commercial-center/street-view-01-hd.webp",
+      "/images/projects/imperial-commercial-center/facade-detail-01-hd.webp",
+      "/images/projects/imperial-commercial-center/aerial-01-hd.webp",
     ],
   },
   {

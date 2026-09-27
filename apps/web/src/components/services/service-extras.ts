@@ -7,7 +7,7 @@ export const SERVICE_SECOND_PHOTO: Record<ServiceSlug, { src: string; alt: strin
   interior: { src: "/images/projects/royal-group-guest-house/kitchen-01.webp", alt: "A finished kitchen and breakfast bar" },
   engineering: { src: "/images/projects/desco-chq-nikunjo/render-aerial-01.webp", alt: "Desco CHQ aerial design render" },
   management: { src: "/images/projects/sadma-fashion-dyeing/construction-02.webp", alt: "A factory under construction" },
-  investment: { src: "/images/projects/imperial-commercial-center/aerial-01.webp", alt: "Imperial Commercial Center, aerial view" },
+  investment: { src: "/images/projects/imperial-commercial-center/aerial-01-hd.webp", alt: "Imperial Commercial Center, aerial view" },
 };
 
 /** Which of ArcDev's projects are worth showing next to each service. */

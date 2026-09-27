@@ -32,7 +32,7 @@ export default async function ProjectsPage() {
         ]}
         title="Our projects"
         intro="Buildings under construction, about to start and already handed over across Dhaka, with the figures for each."
-        image="/images/projects/imperial-commercial-center/street-view-01.webp"
+        image="/images/projects/imperial-commercial-center/street-view-01-hd.webp"
       >
         <dl className="grid max-w-3xl grid-cols-2 overflow-hidden rounded-lg border border-white/15 bg-navy-deep/60 backdrop-blur-sm sm:grid-cols-4">
           {stats.map((stat, index) => (

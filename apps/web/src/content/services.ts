@@ -208,7 +208,7 @@ export const SERVICE_CONTENT: Record<ServiceSlug, ServiceContent> = {
   },
 
   investment: {
-    image: "/images/projects/imperial-commercial-center/exterior-02.webp",
+    image: "/images/projects/imperial-commercial-center/exterior-02-hd.webp",
     lead: "Put your savings into buildings, with every step reported.",
     overview: [
       "ArcDev invites investors to fund named projects. Your money is tied to a specific building, and you receive statements as construction progresses.",

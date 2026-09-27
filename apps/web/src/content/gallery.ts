@@ -12,7 +12,7 @@ export interface GalleryPhoto {
 }
 
 export const GALLERY: GalleryPhoto[] = [
-  { src: "/images/projects/imperial-commercial-center/exterior-01.webp", alt: "Imperial Commercial Center, Satmasjid Road", category: "Buildings", width: 1400, height: 1867 },
+  { src: "/images/projects/imperial-commercial-center/exterior-01-hd.webp", alt: "Imperial Commercial Center, Satmasjid Road", category: "Buildings", width: 1920, height: 1920 },
   { src: "/images/projects/joynal-garden/exterior-01.webp", alt: "Joynal Garden, Elephant Road", category: "Buildings", width: 1400, height: 1050 },
   { src: "/images/projects/runner-apartment-complex/exterior-riverside-01.webp", alt: "Runner Apartment Complex, riverside exterior", category: "Buildings", width: 1400, height: 1050 },
   { src: "/images/projects/swadesh-sunvalley/exterior-night-01.webp", alt: "Swadesh Sunvalley residential tower at night", category: "Buildings", width: 1200, height: 1600 },
@@ -34,7 +34,7 @@ export const GALLERY: GalleryPhoto[] = [
   { src: "/images/projects/oredh-studio/lounge-01.webp", alt: "OREDH lounge terrace", category: "Interiors", width: 1400, height: 1050 },
 
   { src: "/images/projects/desco-chq-nikunjo/render-terrace-01.webp", alt: "Desco CHQ competition design render", category: "Planning", width: 1400, height: 1050 },
-  { src: "/images/projects/imperial-commercial-center/facade-detail-01.webp", alt: "Imperial Commercial Center facade detail", category: "Planning", width: 1400, height: 1050 },
+  { src: "/images/projects/imperial-commercial-center/facade-detail-01-hd.webp", alt: "Imperial Commercial Center facade detail", category: "Planning", width: 1920, height: 1920 },
   { src: "/images/projects/appropriate-apparels/render-01.webp", alt: "Appropriate Apparels factory design render", category: "Planning", width: 1400, height: 1050 },
   { src: "/images/projects/anlima-purbachal/pool-render-01.webp", alt: "Anlima Vacation House pool terrace render", category: "Planning", width: 1400, height: 1050 },
 ];
