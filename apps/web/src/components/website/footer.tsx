@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { SERVICES } from "@arcdev/shared";
 import { SITE } from "@/lib/site";
+import { ArrowUpRightIcon } from "./icons";
 import { SiteLogo } from "./site-logo";
 
 const COMPANY_LINKS = [
@@ -79,9 +80,29 @@ export function Footer() {
 
       {/* Extra bottom padding on phones keeps the floating contact buttons off this line. */}
       <div className="border-t border-white/10">
-        <p className="mx-auto max-w-7xl px-4 pb-24 pt-5 text-sm text-white/60 sm:px-6 md:pb-5">
-          © {new Date().getFullYear()} {SITE.name}
-        </p>
+        <div className="mx-auto flex max-w-7xl flex-col gap-3 px-4 pb-24 pt-5 text-sm text-white/60 sm:flex-row sm:items-center sm:justify-between sm:px-6 md:pb-5">
+          <p>
+            © {new Date().getFullYear()} {SITE.name} All rights reserved.
+          </p>
+          <p className="flex items-center gap-2">
+            <span className="text-xs tracking-[0.16em] text-white/40 uppercase">Designed &amp; developed by</span>
+            <a
+              href="https://mozahidulislam.pro.bd/"
+              target="_blank"
+              rel="noopener"
+              className="group inline-flex items-center gap-1.5 font-semibold text-white/85 transition-colors hover:text-gold-bright"
+            >
+              <span className="relative">
+                Mozahidul Islam
+                <span
+                  aria-hidden="true"
+                  className="absolute inset-x-0 -bottom-0.5 h-px origin-left scale-x-0 bg-gold-bright transition-transform duration-500 group-hover:scale-x-100"
+                />
+              </span>
+              <ArrowUpRightIcon className="size-3.5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+            </a>
+          </p>
+        </div>
       </div>
     </footer>
   );
