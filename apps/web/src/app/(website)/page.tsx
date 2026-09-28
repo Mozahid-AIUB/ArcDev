@@ -5,7 +5,6 @@ import type { ReactNode } from "react";
 import { BlueprintProcess } from "@/components/home/blueprint-process";
 import { FullScreen } from "@/components/home/full-screen";
 import { LandAssessmentForm } from "@/components/home/land-assessment-form";
-import { PartnerFlow } from "@/components/home/partner-flow";
 import { ProjectMap } from "@/components/home/project-map";
 import { ProjectCarousel } from "@/components/home/project-carousel";
 import { ScreenDots } from "@/components/home/screen-dots";
@@ -13,12 +12,11 @@ import { ServiceFlipGrid } from "@/components/home/service-flip-grid";
 import { Credentials, Testimonials, TrustedBy } from "@/components/home/trust-sections";
 import { Marquee } from "@/components/motion/marquee";
 import { SplitWords } from "@/components/motion/split-words";
-import { FactList } from "@/components/ui/fact-list";
 import { FaqList } from "@/components/ui/faq-list";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { ArrowRightIcon, ChatIcon, MailIcon, PhoneIcon, PinIcon } from "@/components/website/icons";
 import { JsonLd } from "@/components/website/json-ld";
-import { AREAS, COMPANY_FACTS, COMPANY_STATS, HOME_FAQS } from "@/content/company";
+import { AREAS, COMPANY_STATS, HOME_FAQS } from "@/content/company";
 import { getProjects } from "@/lib/data";
 import { organizationJsonLd } from "@/lib/seo";
 import { SITE, whatsappUrl } from "@/lib/site";
@@ -204,35 +202,6 @@ export default async function HomePage() {
             </li>
           ))}
         </ul>
-      </section>
-
-      <section aria-labelledby="partners-title" className="bg-ground py-20 sm:py-28">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6">
-          <div className="grid gap-12 lg:grid-cols-[1.2fr_1fr] lg:gap-20">
-            <div>
-              <SectionHeading id="partners-title" eyebrow="How we work" title="One developer, three partners" />
-              <p data-reveal="" className="mt-6 max-w-xl text-lg leading-relaxed text-ink-soft">
-                Landowners bring the plot, investors bring capital, and families and businesses buy the finished
-                flats. ArcDev sits in the middle: it designs the building, handles approvals and manages construction,
-                so each of them deals with one team from the first visit to the last key.
-              </p>
-              <Link
-                href="/about"
-                data-reveal=""
-                className="mt-6 inline-flex min-h-11 items-center gap-2 font-semibold text-gold-deep hover:text-navy"
-              >
-                About ArcDev
-                <ArrowRightIcon />
-              </Link>
-            </div>
-            <div data-reveal="right" className="self-start rounded-lg border border-line border-t-2 border-t-gold bg-panel p-6 sm:p-8">
-              <h3 className="text-sm font-semibold uppercase tracking-[0.14em] text-gold-deep">ArcDev at a glance</h3>
-              <FactList facts={COMPANY_FACTS} className="mt-3" />
-            </div>
-          </div>
-
-          <PartnerFlow />
-        </div>
       </section>
 
       <ProjectMap projects={projects} />
