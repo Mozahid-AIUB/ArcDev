@@ -5,7 +5,6 @@ import type { ReactNode } from "react";
 import { BlueprintProcess } from "@/components/home/blueprint-process";
 import { FullScreen } from "@/components/home/full-screen";
 import { LandAssessmentForm } from "@/components/home/land-assessment-form";
-import { Leadership } from "@/components/home/leadership";
 import { PartnerFlow } from "@/components/home/partner-flow";
 import { ProjectMap } from "@/components/home/project-map";
 import { ProjectCarousel } from "@/components/home/project-carousel";
@@ -183,7 +182,6 @@ export default async function HomePage() {
       {/* More about ArcDev, below the client's five screens. */}
       <TrustedBy />
       <Credentials />
-      <Leadership />
 
       <section aria-label="ArcDev in numbers" className="bg-navy-deep py-16 text-white sm:py-20">
         <ul className="mx-auto grid max-w-7xl grid-cols-2 gap-x-6 gap-y-10 px-4 sm:px-6 lg:grid-cols-5 lg:gap-0">
@@ -244,12 +242,12 @@ export default async function HomePage() {
       <BlueprintProcess />
 
       {/* Neighbourhood names as a decorative band; the map above carries the same information. */}
-      <div aria-hidden="true" className="overflow-hidden bg-gold-bright py-10 text-navy-deep sm:py-14">
+      <div aria-hidden="true" className="overflow-hidden bg-gold-bright py-5 text-navy-deep sm:py-6">
         <Marquee
           items={AREAS}
-          duration={45}
-          itemClassName="font-display text-4xl font-bold sm:text-6xl lg:text-7xl"
-          dotClassName="bg-navy-deep"
+          duration={50}
+          itemClassName="font-display text-lg font-semibold tracking-[0.04em] uppercase sm:text-xl lg:text-2xl"
+          dotClassName="bg-navy-deep/60"
         />
       </div>
 

@@ -27,6 +27,8 @@
   body {
     background-color: var(--color-ground);
     color: var(--color-ink);
+    /* Elements waiting to slide in from the side must never widen the page. */
+    overflow-x: clip;
   }
 
   h1,
@@ -295,6 +297,73 @@ html:has([data-screen]) {
   transform: scaleY(1);
 }
 
+/* Team cards (components/about): 3D lean towards the pointer, a light that follows it, and a
+   gold edge that runs round the card while hovered. */
+.tilt-card {
+  --rx: 0deg;
+  --ry: 0deg;
+  --mx: 50%;
+  --my: 50%;
+  transform: rotateX(var(--rx)) rotateY(var(--ry));
+  transform-style: preserve-3d;
+  transition:
+    transform 0.6s cubic-bezier(0.2, 0.7, 0.2, 1),
+    box-shadow 0.6s ease;
+}
+.tilt-card:hover {
+  transition-duration: 0.15s, 0.6s;
+  box-shadow: 0 34px 70px -24px rgb(0 0 0 / 0.6);
+}
+.tilt-card-light {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+  border-radius: inherit;
+  opacity: 0;
+  transition: opacity 0.5s;
+  background: radial-gradient(460px circle at var(--mx) var(--my), rgb(255 232 180 / 0.16), transparent 45%);
+}
+.tilt-card:hover .tilt-card-light {
+  opacity: 1;
+}
+@property --edge-angle {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+@keyframes edge-run {
+  to {
+    --edge-angle: 360deg;
+  }
+}
+.team-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  padding: 1.5px;
+  border-radius: inherit;
+  pointer-events: none;
+  background: conic-gradient(
+    from var(--edge-angle),
+    transparent 0 55%,
+    var(--color-gold-bright) 78%,
+    transparent 92%
+  );
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+.team-card:hover::before {
+  opacity: 1;
+  animation: edge-run 3.2s linear infinite;
+}
+
 /* Reading progress under the header, driven by scroll alone where the browser supports it. */
 .scroll-progress {
   display: none;
@@ -355,5 +424,11 @@ html:has([data-screen]) {
   }
   .scroll-progress {
     display: none !important;
+  }
+  .tilt-card {
+    transform: none !important;
+  }
+  .team-card::before {
+    animation: none !important;
   }
 }

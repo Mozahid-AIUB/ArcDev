@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { SERVICES } from "@arcdev/shared";
 import { MilestoneTimeline } from "@/components/about/milestone-timeline";
+import { TeamShowcase } from "@/components/about/team-showcase";
 import { buttonStyles } from "@/components/ui/button";
 import { FactList } from "@/components/ui/fact-list";
 import { SectionHeading } from "@/components/ui/section-heading";
@@ -19,16 +20,6 @@ export const metadata: Metadata = {
 
 function formatNumber(value: number, decimals = 0) {
   return value.toLocaleString("en-US", { minimumFractionDigits: decimals, maximumFractionDigits: decimals });
-}
-
-/** "Deanna Alam" -> "DA": first letters of each name, for the fallback avatar. */
-function initials(name: string) {
-  return name
-    .split(/\s+/)
-    .map((word) => word[0])
-    .join("")
-    .slice(0, 2)
-    .toUpperCase();
 }
 
 export default function AboutPage() {
@@ -139,47 +130,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Leadership */}
-      <section aria-labelledby="leadership-heading" className="bg-sand py-20 sm:py-28">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6">
-          <SectionHeading
-            id="leadership-heading"
-            eyebrow="Leadership"
-            title="The people accountable for your project"
-          />
-          <ul className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {ABOUT.leadership.map((person) => (
-              <li
-                key={person.name}
-                data-reveal=""
-                className="flex flex-col gap-5 border-t-4 border-gold bg-panel p-6 shadow-sm sm:flex-row sm:items-start"
-              >
-                {person.photo ? (
-                  <Image
-                    src={person.photo}
-                    alt={person.name}
-                    width={80}
-                    height={80}
-                    className="size-20 shrink-0 rounded-full object-cover"
-                  />
-                ) : (
-                  <span
-                    aria-hidden="true"
-                    className="grid size-20 shrink-0 place-items-center rounded-full bg-navy font-display text-2xl font-bold text-gold-bright"
-                  >
-                    {initials(person.name)}
-                  </span>
-                )}
-                <div className="min-w-0">
-                  <h3 className="text-xl font-bold text-navy">{person.name}</h3>
-                  <p className="mt-1 font-semibold text-gold-deep">{person.role}</p>
-                  {person.bio && <p className="mt-2 text-[15px] leading-relaxed text-ink-soft">{person.bio}</p>}
-                </div>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </section>
+      <TeamShowcase />
 
       {/* What we do */}
       <section aria-labelledby="services-heading" className="bg-panel py-20 sm:py-28">
