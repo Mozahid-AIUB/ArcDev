@@ -3,6 +3,8 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 import { getService, SERVICES } from "@arcdev/shared";
 import { OtherServices } from "@/components/services/other-services";
+import { ServiceDiagram } from "@/components/services/service-diagram";
+import { SERVICE_DIAGRAMS } from "@/components/services/service-diagrams";
 import { relatedProjects, SERVICE_SECOND_PHOTO } from "@/components/services/service-extras";
 import { ServiceSteps } from "@/components/services/service-steps";
 import { buttonStyles } from "@/components/ui/button";
@@ -45,6 +47,7 @@ export default async function ServicePage({ params }: PageProps<"/services/[slug
   const others = SERVICES.filter((other) => other.slug !== service.slug);
   const projects = relatedProjects(service.slug, await getProjects());
   const [firstParagraph, ...moreParagraphs] = content.overview;
+  const diagram = SERVICE_DIAGRAMS[service.slug];
 
   return (
     <>
@@ -106,6 +109,23 @@ export default async function ServicePage({ params }: PageProps<"/services/[slug
             <FactList facts={content.facts} className="mt-4" />
           </aside>
         </div>
+      </section>
+
+      {/* The service in one picture */}
+      <section aria-labelledby="diagram-title" className="blueprint-bg bg-navy-deep py-20 text-white sm:py-28">
+        <ServiceDiagram
+          beats={diagram.beats}
+          heading={
+            <SectionHeading
+              id="diagram-title"
+              tone="dark"
+              eyebrow="In one picture"
+              title={`${service.name}, step by step`}
+            />
+          }
+        >
+          <diagram.Diagram />
+        </ServiceDiagram>
       </section>
 
       {/* Who it's for */}

@@ -53,6 +53,7 @@ export function Header() {
 
   return (
     <header
+      style={{ viewTransitionName: "site-header" }}
       className={`sticky top-0 z-40 bg-navy text-white transition-shadow duration-300 ${scrolled ? "shadow-lg shadow-navy-deep/30" : ""}`}
     >
       <span

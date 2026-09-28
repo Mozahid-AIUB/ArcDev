@@ -9,7 +9,12 @@ import { FactList } from "@/components/ui/fact-list";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { ArrowRightIcon, ChatIcon, CheckIcon, PhoneIcon } from "@/components/website/icons";
 import { PageHeader } from "@/components/website/page-header";
-import { ProgressBar, ProjectCard, ProjectStatusBadge } from "@/components/website/project-card";
+import {
+  ProgressBar,
+  ProjectCard,
+  ProjectStatusBadge,
+  projectTransitionName,
+} from "@/components/website/project-card";
 import { getProject, getProjects } from "@/lib/data";
 import { SITE, whatsappUrl } from "@/lib/site";
 
@@ -91,6 +96,9 @@ function keyNumbers(project: Project): KeyNumber[] {
       decimals,
     });
   }
+  if (project.slabsCast !== undefined && project.storeys !== undefined) {
+    numbers.push({ label: "Slabs cast", value: `${project.slabsCast}/${project.storeys}` });
+  }
   if (project.handover) {
     numbers.push({
       label: project.status === "completed" ? "Handed over" : "Handover",
@@ -132,9 +140,10 @@ export default async function ProjectPage({ params }: PageProps<"/projects/[slug
         title={project.name}
         intro={project.location}
         image={project.images[0]}
+        imageTransitionName={projectTransitionName(project.slug)}
       >
         {numbers.length > 0 && (
-          <dl className="inline-grid grid-cols-2 gap-px overflow-hidden rounded-lg border border-white/15 bg-white/10 backdrop-blur-sm sm:flex sm:flex-wrap">
+          <dl className="inline-grid grid-cols-2 gap-px overflow-hidden rounded-lg border border-white/15 bg-white/10 backdrop-blur-sm sm:inline-flex sm:flex-wrap">
             {numbers.map((item) => (
               <div
                 key={item.label}

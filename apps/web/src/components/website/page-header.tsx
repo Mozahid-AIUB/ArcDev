@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import type { ReactNode } from "react";
+import { ViewTransition, type ReactNode } from "react";
 import { SplitWords } from "@/components/motion/split-words";
 import { breadcrumbJsonLd, type Crumb } from "@/lib/seo";
 import { JsonLd } from "./json-ld";
@@ -15,10 +15,12 @@ interface PageHeaderProps {
   image?: string;
   /** Extra content under the intro: badges, key facts, buttons. */
   children?: ReactNode;
+  /** Shared-element name, so a card's photo can morph into this one on navigation. */
+  imageTransitionName?: string;
 }
 
 /** The navy band at the top of every inner page: breadcrumb, animated title, optional photo. */
-export function PageHeader({ crumbs, eyebrow, title, intro, image, children }: PageHeaderProps) {
+export function PageHeader({ crumbs, eyebrow, title, intro, image, children, imageTransitionName }: PageHeaderProps) {
   const trail = crumbs.slice(0, -1);
 
   return (
@@ -28,7 +30,13 @@ export function PageHeader({ crumbs, eyebrow, title, intro, image, children }: P
       {image && (
         <>
           <div data-parallax="8" className="absolute inset-x-0 top-[-10%] -z-20 h-[120%]">
-            <Image src={image} alt="" fill priority sizes="100vw" className="object-cover" />
+            {imageTransitionName ? (
+              <ViewTransition name={imageTransitionName} share="morph" default="none">
+                <Image src={image} alt="" fill priority sizes="100vw" className="object-cover" />
+              </ViewTransition>
+            ) : (
+              <Image src={image} alt="" fill priority sizes="100vw" className="object-cover" />
+            )}
           </div>
           <div
             aria-hidden="true"

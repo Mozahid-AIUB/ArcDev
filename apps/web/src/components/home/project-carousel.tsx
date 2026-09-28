@@ -2,10 +2,10 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useCallback, useEffect, useRef, useState, type CSSProperties } from "react";
+import { useCallback, useEffect, useRef, useState, ViewTransition, type CSSProperties } from "react";
 import type { Project, ProjectStatus } from "@arcdev/shared";
 import { ArrowRightIcon, ChevronLeftIcon, ChevronRightIcon, PinIcon } from "@/components/website/icons";
-import { projectKeyFacts } from "@/components/website/project-card";
+import { projectKeyFacts, projectTransitionName } from "@/components/website/project-card";
 
 const AUTOPLAY_MS = 5500;
 /** After a swipe, tap or key press, wait this long before auto-advancing again. */
@@ -304,14 +304,16 @@ function Slide({
       } ${isActive ? "scale-100 opacity-100" : "scale-[0.92] opacity-45"}`}
     >
       {cover && (
-        <Image
-          src={cover}
-          alt=""
-          fill
-          draggable={false}
-          sizes="(min-width: 1024px) 74vw, (min-width: 640px) 80vw, 86vw"
-          className={`object-cover transition-transform duration-6000 ease-out ${isActive ? "scale-100" : "scale-110"}`}
-        />
+        <ViewTransition name={projectTransitionName(project.slug)} share="morph" default="none">
+          <Image
+            src={cover}
+            alt=""
+            fill
+            draggable={false}
+            sizes="(min-width: 1024px) 74vw, (min-width: 640px) 80vw, 86vw"
+            className={`object-cover transition-transform duration-6000 ease-out ${isActive ? "scale-100" : "scale-110"}`}
+          />
+        </ViewTransition>
       )}
       <div className="absolute inset-0 bg-linear-to-t from-navy-deep via-navy-deep/35 to-navy-deep/10" />
       <div className="absolute inset-0 bg-linear-to-r from-navy-deep/50 via-transparent to-transparent max-lg:hidden" />

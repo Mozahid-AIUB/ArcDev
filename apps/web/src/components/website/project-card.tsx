@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { ViewTransition } from "react";
 import type { Project, ProjectStatus } from "@arcdev/shared";
 import { ArrowUpRightIcon, BuildingIcon, PinIcon } from "./icons";
 
@@ -33,6 +34,11 @@ export function ProjectStatusBadge({ status }: { status: ProjectStatus }) {
   );
 }
 
+/** Shared-element name linking a project's photo on cards to the hero on its own page. */
+export function projectTransitionName(slug: string) {
+  return `project-photo-${slug}`;
+}
+
 /** The project's first photo, or a plain navy block when there is none. */
 export function ProjectCover({
   project,
@@ -50,14 +56,16 @@ export function ProjectCover({
   return (
     <div className={`relative overflow-hidden bg-navy ${className}`}>
       {cover ? (
-        <Image
-          src={cover}
-          alt={`${project.name}, ${project.location}`}
-          fill
-          sizes={sizes}
-          priority={priority}
-          className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-        />
+        <ViewTransition name={projectTransitionName(project.slug)} share="morph" default="none">
+          <Image
+            src={cover}
+            alt={`${project.name}, ${project.location}`}
+            fill
+            sizes={sizes}
+            priority={priority}
+            className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+          />
+        </ViewTransition>
       ) : (
         <div className="absolute inset-0 grid place-items-center text-gold-bright/40">
           <BuildingIcon className="size-16" />
