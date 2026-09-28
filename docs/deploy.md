@@ -52,6 +52,18 @@ Also consider a Cloudflare **Redirect Rule** for `www` → `arcdevltd.com` with 
 
 To deploy by hand: Coolify → ArcDev → production → arcdev-website → **Deploy**.
 
+### Safety net for missed webhooks
+
+GitHub's push webhook sometimes never reaches Coolify, and nothing on the server shows it was
+attempted. A systemd timer on the VPS covers for it: every minute, `arcdev-autodeploy` compares
+GitHub's `main` with Coolify's deployment history, and if a commit is still undeployed after three
+minutes it queues the deployment through Coolify, the same way the webhook would. It honours the
+app's auto-deploy switch and its watch paths, and needs no token because the repository is public.
+
+- Source: `infra/vps/` (script and systemd units), installed as `/usr/local/bin/arcdev-autodeploy`.
+- What it did: `/var/log/arcdev-autodeploy.log` on the VPS (only written when it steps in).
+- Pause it: `systemctl disable --now arcdev-autodeploy.timer`.
+
 ## 4. Environment variables
 
 Set in Coolify → arcdev-website → **Environment Variables**. Redeploy after changing them.

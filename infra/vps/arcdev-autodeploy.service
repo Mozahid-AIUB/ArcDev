@@ -1,0 +1,9 @@
+[Unit]
+Description=Deploy ArcDev's latest commit if Coolify's GitHub webhook missed it
+After=docker.service
+Requires=docker.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/arcdev-autodeploy
+Nice=10
