@@ -1,6 +1,8 @@
 import type { Project } from "@arcdev/shared";
-import { MapMotion } from "@/components/home/map-motion";
+import { ProjectMapStage, type DhakaPin } from "@/components/home/project-map-stage";
 import { SectionHeading } from "@/components/ui/section-heading";
+import { projectDhaka } from "@/content/dhaka-map";
+import { DHAKA_AREAS, DHAKA_HQ, DHAKA_PLACE_LABELS, DHAKA_SITES } from "@/content/dhaka-sites";
 import {
   BANGLADESH_OUTLINE,
   BAY_LABEL,
@@ -76,47 +78,47 @@ export function ProjectMap({ projects }: { projects: readonly Project[] }) {
   const total = Object.values(counts).reduce((a, b) => a + b, 0);
   const hq = MAP_PINS.dhaka;
 
+  const pins: DhakaPin[] = projects.flatMap((project) => {
+    const site = DHAKA_SITES[project.slug];
+    if (!site) return [];
+    const area = DHAKA_AREAS.find((a) => a.id === site.area);
+    return [
+      {
+        slug: project.slug,
+        name: project.name,
+        areaId: site.area,
+        areaName: area?.name ?? "Dhaka",
+        status: project.status,
+        image: project.images[0],
+        ...projectDhaka(site.lng, site.lat),
+      },
+    ];
+  });
+  const groups = DHAKA_AREAS.map((area) => ({
+    id: area.id,
+    name: area.name,
+    count: pins.filter((p) => p.areaId === area.id).length,
+  })).filter((g) => g.count > 0);
+
   return (
     <section aria-labelledby="map-title" className="map-paper relative overflow-hidden bg-panel py-20 sm:py-28">
-      <MapMotion className="mx-auto grid max-w-7xl items-center gap-12 px-4 sm:px-6 lg:grid-cols-[1fr_1.15fr] lg:gap-16">
-        <div>
+      <ProjectMapStage
+        heading={
           <SectionHeading
             id="map-title"
             eyebrow="Where we build"
             title="Built across Bangladesh"
             intro={`${total} projects from Dhaka to Sylhet, run from our head office in Uttara and a second office in Akhalia.`}
           />
-          <ul className="mt-8 divide-y divide-line border-y border-line">
-            {REGIONS.map((region) => (
-              <li
-                key={region.id}
-                data-region={region.id}
-                className="map-region group relative flex items-start gap-4 py-4 pl-4 transition-colors duration-300"
-              >
-                <span
-                  aria-hidden="true"
-                  className="map-region-bar absolute top-3 bottom-3 left-0 w-0.5 origin-top scale-y-0 rounded-full bg-gold transition-transform duration-300"
-                />
-                <span className="w-14 shrink-0 font-display text-3xl leading-none font-bold text-navy tabular-nums">
-                  {String(counts[region.id]).padStart(2, "0")}
-                </span>
-                <span className="min-w-0">
-                  <span className="flex flex-wrap items-center gap-x-2 gap-y-1">
-                    <span className="font-display text-lg font-bold text-navy">{region.name}</span>
-                    {region.office && (
-                      <span className="rounded-full bg-gold/10 px-2 py-0.5 text-[11px] font-semibold tracking-wide text-gold-deep uppercase">
-                        {region.office}
-                      </span>
-                    )}
-                  </span>
-                  <span className="mt-1 block text-[15px] leading-snug text-ink-soft">{region.detail}</span>
-                </span>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        <figure className="relative order-first mx-auto w-full max-w-135 lg:order-0">
+        }
+        dhakaAt={MAP_PINS.dhaka}
+        regions={REGIONS.map((r) => ({ id: r.id, name: r.name, detail: r.detail, office: r.office, count: counts[r.id] }))}
+        groups={groups}
+        pins={pins}
+        hq={projectDhaka(DHAKA_HQ.lng, DHAKA_HQ.lat)}
+        labels={DHAKA_PLACE_LABELS.map((label) => ({ name: label.name, river: label.river, ...projectDhaka(label.lng, label.lat) }))}
+        unpinned={counts.dhaka - pins.length}
+        country={
           <svg
             data-map-svg=""
             viewBox={MAP_VIEWBOX}
@@ -261,11 +263,8 @@ export function ProjectMap({ projects }: { projects: readonly Project[] }) {
               </g>
             </g>
           </svg>
-          <figcaption className="sr-only">
-            Project counts by area: {REGIONS.map((r) => `${r.name} ${counts[r.id]}`).join(", ")}.
-          </figcaption>
-        </figure>
-      </MapMotion>
+        }
+      />
     </section>
   );
 }
