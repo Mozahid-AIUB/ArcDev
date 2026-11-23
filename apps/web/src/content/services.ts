@@ -233,10 +233,10 @@ export const SERVICE_CONTENT: Record<ServiceSlug, ServiceContent> = {
       "Direct contact with the finance team",
     ],
     facts: [
-      { label: "Minimum investment", value: "BDT 5 lakh" },
+      { label: "Minimum investment", value: "BDT 25 lakh" },
       { label: "Term", value: "12–36 months" },
       { label: "Statements", value: "Quarterly" },
-      { label: "Returns", value: "Not guaranteed" },
+      { label: "Returns", value: "Project basis" },
     ],
     faqs: [
       { q: "Is my return guaranteed?", a: "No. Returns depend on the project and on flat sales. The agreement explains how profit — and any shortfall — is handled." },
